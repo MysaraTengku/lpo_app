@@ -1,0 +1,7 @@
+{
+  "name": "lpo_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
