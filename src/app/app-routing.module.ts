@@ -10,7 +10,15 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'form',
+    loadChildren: () => import('./user/form/form.module').then( m => m.FormPageModule)
   },
+  {
+    path: 'downloadform',
+    loadChildren: () => import('./user/downloadform/downloadform.module').then( m => m.DownloadformPageModule)
+  },
+
 ];
 
 @NgModule({
