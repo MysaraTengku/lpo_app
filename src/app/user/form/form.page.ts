@@ -45,10 +45,7 @@ export class FormPage implements OnInit {
     console.log(this.formitem)
     this.data.addForm({user: this.formitem.obs_name, time: serverTimestamp(), 
       form: this.formitem}).then(e => {
-
         this.navCtrl.back();
-
-
     }).catch(e => {
       console.log("error occured")
     })
