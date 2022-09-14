@@ -1,27 +1,35 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 import { PDFDict, PDFDocument, TextAlignment} from 'pdf-lib'
-
+import * as moment from 'moment';
 declare var require: any
+import { LoadingController } from '@ionic/angular';
+
+
 const FileSaver = require('file-saver');
 
+
+
+
+
 @Component({
-  selector: 'app-downloadform',
-  templateUrl: './downloadform.page.html',
-  styleUrls: ['./downloadform.page.scss'],
+  selector: 'app-list-pdf',
+  templateUrl: './list-pdf.page.html',
+  styleUrls: ['./list-pdf.page.scss'],
 })
+export class ListPdfPage implements OnInit {
+  forms = []
+  constructor(private data: DataService, public loadingController: LoadingController) { }
 
+  ngOnInit() {
+   this.data.getForms().subscribe(data => {
+      this.forms = data
+      console.log(data)
+    })
+  }
 
-export class DownloadformPage implements OnInit {
-  constructor() {
-    
-    
-   }
-  // @ViewChild("downloadPdf") pdfForm: ElementRef;
-
-
-  async ngOnInit() {
-
-  
+  async downloadForm(username ,dataForm) {
+    this.presentLoading()
     const formurl = "../../../assets/media/LPO_TEST.pdf"
     const existingPdfBytes = await fetch(formurl).then(res => res.arrayBuffer());
 
@@ -181,48 +189,42 @@ export class DownloadformPage implements OnInit {
     const ppe_1comm  = form.getTextField("00101_comments")
 
 
-    //--------------- Set name/chkbox --------------//
+    //--------------------------- Set name/chkbox ------------------------//
 
-    site.setText("Town Council")
+    // 1 ROW
+    site.setText(dataForm.siteName)
+    city.setText(dataForm.country)
+    obs_date.setText(moment(dataForm.date).format("DD/MM/YYYY"))
+    obs_time.setText(moment(dataForm.time).format("HH:mm"))
 
-    am_chk.check()
+    const time = parseInt(moment(dataForm.time).format("HH")) 
+    // console.log(time < 12)
+    time < 12  ? am_chk.check() : pm_chk.check() // check AM/PM
+    dataForm.classification == "peer" ? peer_to_peer.check() : super_to_job.check(); // peer / superv_to_job
 
-    peer_to_peer.check()
 
+    // 2 ROW    
+    observer_name.setText(dataForm.obs_name)
+    observer_title.setText(dataForm.obs_title)
+    observer_comp.setText(dataForm.obs_comp)
+    observees_title.setText(dataForm.obe_title)
+    observees_comp.setText(dataForm.obe_comp)
 
-    observees_title.setText("Mr Worldwide")
-    asia.check()
-
-    gsc_sshe.check()
-    iol_upstream.check()
-    food_prep.check()
-    mobile_rem.check()
-    does_not_apply.check()
-
-    conducted_by.setText("fitri")
-
-    vv_date_2.setText("31/33/33")
-    comments_2.setText("i got no comments")
-
-    ppe_1c.setText("1")
-    ppe_1c.setAlignment(TextAlignment.Center)
-
-    ppe_1comm.setText("got comment.")
-
+   
 
     const pdfBytes = await pdfDoc.save()
 
-    const pdfName = 'your_pdf_file'; // pdf file name
+    const pdfName = `${username}_LPO Non-compliance`; // pdf file name
 
     var blob = new Blob([pdfBytes], {type: "application/pdf"}); // prepare file
 
-    // FileSaver.saveAs(blob, pdfName); //download file
+    FileSaver.saveAs(blob, pdfName); //download file
+    this.loadingController.dismiss()
   }
-
-  // downloadFile(data: Response) {
-  //   const blob = new Blob([data], { type: 'application/pdf' });
-  //   const url= window.URL.createObjectURL(blob);
-  //   window.open(url);
-  // }
-
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Preparing...',
+    });
+    await loading.present();
+  }
 }

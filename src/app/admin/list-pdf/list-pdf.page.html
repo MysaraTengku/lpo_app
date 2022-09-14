@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>User Submitted</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-card *ngFor="let form of forms">
+      <ion-card-header>
+        <ion-card-subtitle>Name: {{form.user}}</ion-card-subtitle>
+    
+        <!-- <ion-card-subtitle>Document: </ion-card-subtitle> -->
+      </ion-card-header>
+      
+      <ion-card-content style="font-size: 12px;">
+        Date submitted: {{form.time.seconds*1000 | date: 'd MMM YYYY, HH:mm'}}
+      </ion-card-content>
+
+      <ion-button (click)="downloadForm(form.user ,form.form)" id="download" fill="clear">
+        <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+    </ion-button>
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>

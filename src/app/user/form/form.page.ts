@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { PdfComponent } from 'src/app/pdf/pdf.component';
-import template from "./template";
+import { DataService } from 'src/app/services/data.service';
 
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import * as moment from 'moment';
+import {serverTimestamp } from 'firebase/firestore';
+import { NavController } from '@ionic/angular';
 
 declare var require: any;
 @Component({
@@ -16,28 +19,44 @@ export class FormPage implements OnInit {
     country: '',
     classification: '',
     time: '',
-    date: ''
+    date: '',
+    obs_name:'',
+    obs_title:'',
+    obs_comp:'',
+    obe_title:'',
+    obe_comp:'',
   }
 
-  constructor() { }
+  constructor(private data: DataService, private firestore: AngularFirestore,
+    private navCtrl: NavController
+    ) {
+    
+   }
 
   ngOnInit() {
+    // const date = new Date("2022-09-14T01:07:00+08:00")
+    const date = moment("2022-09-14T01:07:00+08:00").format("DD/MM/YYYY")
+    const time = moment("2022-09-14T01:07:00+08:00").format("HH:mm")
+    console.log(date)
+    console.log(time)
   }
-  @ViewChild("downloadPdf") pdfForm;
- 
 
   logForm() {
-    // var el: any = document.createElement( 'html' );
-    // el.innerHTML = template
+    console.log(this.formitem)
+    this.data.addForm({user: this.formitem.obs_name, time: serverTimestamp(), 
+      form: this.formitem}).then(e => {
 
-    // console.log(el.getElementsByTagName("div")[0])
-    // var data = document.getElementsByTagName("div");  //Id of the table
+        this.navCtrl.back();
 
 
-
+    }).catch(e => {
+      console.log("error occured")
+    })
   }
 
 
   
 
 }
+
+

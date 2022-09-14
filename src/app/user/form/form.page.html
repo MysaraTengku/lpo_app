@@ -9,49 +9,75 @@
 
 <ion-content>
 
-  <form (ngSubmit)="logForm()">
-    <ion-item>
-      <ion-label position="stacked">1. FACILITY/PROJECT SITE NAME</ion-label>
-      <ion-input [(ngModel)]="formitem.siteName" name="siteName" placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label position="stacked">2.CITY/STATE/COUNTRY</ion-label>
-      <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">3.OBSERVATION DATE</ion-label>
-      <ion-datetime-button datetime="date"></ion-datetime-button>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">4.OBSERVATION TIME</ion-label>
-      <ion-datetime-button datetime="time"></ion-datetime-button>
-
-    </ion-item>
-
-
-
-
+  <form (ngSubmit)="logForm()" #myForm="ngForm">
     <ion-list>
-      <ion-item lines="none">
-        <ion-label style="font-size: 14px;">5.CLASSIFICATION</ion-label>
+    <ion-list-header> Facility/Project Information</ion-list-header>
+
+      <ion-item>
+        <ion-label position="stacked">1. FACILITY/PROJECT SITE NAME</ion-label>
+        <ion-input [(ngModel)]="formitem.siteName" name="siteName" placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
       </ion-item>
-      <ion-radio-group [(ngModel)]="formitem.classification" name="classification" value="peer">
+  
+  
+      <ion-item>
+        <ion-label position="stacked">2.CITY/STATE/COUNTRY</ion-label>
+        <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">3.OBSERVATION DATE</ion-label>
+        <ion-datetime-button datetime="date"></ion-datetime-button>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">4.OBSERVATION TIME</ion-label>
+        <ion-datetime-button datetime="time"></ion-datetime-button>
+  
+      </ion-item>
+  
+        <ion-item lines="none">
+          <ion-label style="font-size: 14px;">5.CLASSIFICATION<span id="class-check"> (please check one)</span> </ion-label>
+    
+        </ion-item>
+        <ion-radio-group [(ngModel)]="formitem.classification" name="classification" value="peer">
+  
+          <ion-item>
+            <ion-label>Peer to Peer</ion-label>
+            <ion-radio slot="start" value="peer"></ion-radio>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Supervisor to Job Expert </ion-label>
+            <ion-radio slot="start" value="supervisor"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+
+        <ion-list-header> Observer's Particulars</ion-list-header>
 
         <ion-item>
-          <ion-label>Peer to Peer</ion-label>
-          <ion-radio slot="start" value="peer"></ion-radio>
+          <ion-label position="stacked">1. Observer's Name</ion-label>
+          <ion-input [(ngModel)]="formitem.obs_name" name="obs_name" required></ion-input>
         </ion-item>
-        
         <ion-item>
-          <ion-label>Supervisor to Job Expert </ion-label>
-          <ion-radio slot="start" value="supervisor"></ion-radio>
+          <ion-label position="stacked">2. Observer's Title</ion-label>
+          <ion-input [(ngModel)]="formitem.obs_title" name="obs_title" required></ion-input>
         </ion-item>
-      </ion-radio-group>
-    </ion-list>
 
+        <ion-item>
+          <ion-label position="stacked">3. Observer's Company</ion-label>
+          <ion-input [(ngModel)]="formitem.obs_comp" name="obs_comp" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">4. Observee's Title</ion-label>
+          <ion-input [(ngModel)]="formitem.obe_title" name="obe_title" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">5. Observee's Company</ion-label>
+          <ion-input [(ngModel)]="formitem.obe_comp" name="obe_comp" required></ion-input>
+        </ion-item>
+      </ion-list>
+  
+  
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
@@ -64,9 +90,6 @@
         <ion-datetime [(ngModel)]="formitem.date" name="date" id="date" presentation="date" [showDefaultButtons]="true"></ion-datetime>
       </ng-template>
     </ion-modal>
-
-
-    <ion-button id="b-bottom" type="submit" expand="block" fill="outline">Submit</ion-button>
-
+    <ion-button id="b-bottom" type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
   </form>
 </ion-content>

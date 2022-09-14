@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'downloadform',
     loadChildren: () => import('./user/downloadform/downloadform.module').then( m => m.DownloadformPageModule)
   },
+  {
+    path: 'list-pdf',
+    loadChildren: () => import('./admin/list-pdf/list-pdf.module').then( m => m.ListPdfPageModule)
+  },
 
 ];
 
