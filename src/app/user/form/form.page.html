@@ -14,28 +14,28 @@
     <ion-list-header> Facility/Project Information</ion-list-header>
 
       <ion-item>
-        <ion-label position="stacked">1. FACILITY/PROJECT SITE NAME</ion-label>
+        <ion-label position="stacked">1. Facility/Project Site Name</ion-label>
         <ion-input [(ngModel)]="formitem.siteName" name="siteName" placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
       </ion-item>
   
   
       <ion-item>
-        <ion-label position="stacked">2.CITY/STATE/COUNTRY</ion-label>
+        <ion-label position="stacked">2. City/State/Country</ion-label>
         <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">3.OBSERVATION DATE</ion-label>
+        <ion-label position="stacked">3. Observation Date</ion-label>
         <ion-datetime-button datetime="date"></ion-datetime-button>
       </ion-item>
   
       <ion-item>
-        <ion-label position="stacked">4.OBSERVATION TIME</ion-label>
+        <ion-label position="stacked">4. Observation Time</ion-label>
         <ion-datetime-button datetime="time"></ion-datetime-button>
   
       </ion-item>
   
         <ion-item lines="none">
-          <ion-label style="font-size: 14px;">5.CLASSIFICATION<span id="class-check"> (please check one)</span> </ion-label>
+          <ion-label style="font-size: 14px;">5. Classification<span id="class-check"> (please check one)</span> </ion-label>
     
         </ion-item>
         <ion-radio-group [(ngModel)]="formitem.classification" name="classification" value="peer">
@@ -90,6 +90,11 @@
         <ion-datetime [(ngModel)]="formitem.date" name="date" id="date" presentation="date" [showDefaultButtons]="true"></ion-datetime>
       </ng-template>
     </ion-modal>
-    <ion-button id="b-bottom" type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
+
+    <div id="b-bottom" >
+
+      <ion-button type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
+
+    </div>
   </form>
 </ion-content>

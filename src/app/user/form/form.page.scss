@@ -1,20 +1,23 @@
 
+#b-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+    margin: auto;
+    max-width: 700px;
+
+}
+
 @media (prefers-color-scheme: dark) {
     #b-bottom {
         background-color: black;
-        position: fixed;
-        left: 0;
-        bottom: 10px;
-        right: 0;
+
     }
 }
 @media (prefers-color-scheme: light) {
     #b-bottom {
         background-color: white;
-        position: fixed;
-        left: 0;
-        bottom: 10px;
-        right: 0;
     }
 }
 
@@ -25,5 +28,8 @@
 }
 
 ion-list {
-    margin-bottom: 70px;
+    // margin-bottom: 70px;
+
+    max-width: 700px;
+    margin: auto auto 70px auto;
 }

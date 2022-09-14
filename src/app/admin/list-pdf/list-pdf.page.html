@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios" >
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -7,10 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
 
-  <ion-list>
-    <ion-card *ngFor="let form of forms">
+
+  <div id="list-card">
+
+    <ion-card *ngFor="let form of forms" mode="ios">
       <ion-card-header>
         <ion-card-subtitle>Name: {{form.user}}</ion-card-subtitle>
     
@@ -26,6 +28,7 @@
     </ion-button>
     </ion-card>
 
-  </ion-list>
+  </div>
+
 
 </ion-content>
