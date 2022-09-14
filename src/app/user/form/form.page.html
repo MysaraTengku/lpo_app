@@ -7,93 +7,100 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
 
   <form (ngSubmit)="logForm()" #myForm="ngForm">
-    <ion-list>
-    <ion-list-header> Facility/Project Information</ion-list-header>
+    <ion-list mode="ios">
+      <ion-list-header> Facility/Project Information</ion-list-header>
 
       <ion-item>
         <ion-label position="stacked">1. Facility/Project Site Name</ion-label>
-        <ion-input [(ngModel)]="formitem.siteName" name="siteName" placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
+        <ion-input [(ngModel)]="formitem.siteName" name="siteName"
+          placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
       </ion-item>
-  
-  
+
+
       <ion-item>
         <ion-label position="stacked">2. City/State/Country</ion-label>
-        <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required></ion-input>
+        <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required>
+        </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">3. Observation Date</ion-label>
+        <ion-label position="stacked">3. Observation Date <span id="class-check"> (automatically set to current
+            date)</span></ion-label>
         <ion-datetime-button datetime="date"></ion-datetime-button>
       </ion-item>
-  
+
       <ion-item>
-        <ion-label position="stacked">4. Observation Time</ion-label>
+        <ion-label position="stacked">4. Observation Time <span id="class-check"> (automatically set to current
+            time)</span></ion-label>
         <ion-datetime-button datetime="time"></ion-datetime-button>
-  
+
       </ion-item>
-  
-        <ion-item lines="none">
-          <ion-label style="font-size: 14px;">5. Classification<span id="class-check"> (please check one)</span> </ion-label>
-    
-        </ion-item>
-        <ion-radio-group [(ngModel)]="formitem.classification" name="classification" value="peer">
-  
-          <ion-item>
-            <ion-label>Peer to Peer</ion-label>
-            <ion-radio slot="start" value="peer"></ion-radio>
-          </ion-item>
-          
-          <ion-item>
-            <ion-label>Supervisor to Job Expert </ion-label>
-            <ion-radio slot="start" value="supervisor"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
 
+      <ion-item lines="none">
+        <ion-label  style="font-size: 14px;">5. Classification<span id="class-check"> (please check one)</span>
+        </ion-label>
 
-        <ion-list-header> Observer's Particulars</ion-list-header>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="formitem.classification" name="classification">
 
         <ion-item>
-          <ion-label position="stacked">1. Observer's Name</ion-label>
-          <ion-input [(ngModel)]="formitem.obs_name" name="obs_name" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">2. Observer's Title</ion-label>
-          <ion-input [(ngModel)]="formitem.obs_title" name="obs_title" required></ion-input>
+          <ion-label>Peer to Peer</ion-label>
+          <ion-radio slot="start" value="peer"></ion-radio>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">3. Observer's Company</ion-label>
-          <ion-input [(ngModel)]="formitem.obs_comp" name="obs_comp" required></ion-input>
+          <ion-label>Supervisor to Job Expert </ion-label>
+          <ion-radio slot="start" value="supervisor"></ion-radio>
         </ion-item>
-        <ion-item>
-          <ion-label position="stacked">4. Observee's Title</ion-label>
-          <ion-input [(ngModel)]="formitem.obe_title" name="obe_title" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">5. Observee's Company</ion-label>
-          <ion-input [(ngModel)]="formitem.obe_comp" name="obe_comp" required></ion-input>
-        </ion-item>
-      </ion-list>
-  
-  
+      </ion-radio-group>
+
+
+      <ion-list-header> Observer's Particulars</ion-list-header>
+
+      <ion-item>
+        <ion-label position="stacked">1. Observer's Name</ion-label>
+        <ion-input [(ngModel)]="formitem.obs_name" name="obs_name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">2. Observer's Title</ion-label>
+        <ion-input [(ngModel)]="formitem.obs_title" name="obs_title" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">3. Observer's Company</ion-label>
+        <ion-input [(ngModel)]="formitem.obs_comp" name="obs_comp" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">4. Observee's Title</ion-label>
+        <ion-input [(ngModel)]="formitem.obe_title" name="obe_title" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">5. Observee's Company</ion-label>
+        <ion-input [(ngModel)]="formitem.obe_comp" name="obe_comp" required></ion-input>
+      </ion-item>
+    </ion-list>
+
+
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime [(ngModel)]="formitem.time" name="time" id="time" presentation="time" [showDefaultButtons]="true"></ion-datetime>
+        <ion-datetime [(ngModel)]="formitem.time" name="time" id="time" presentation="time" [showDefaultButtons]="true">
+        </ion-datetime>
       </ng-template>
     </ion-modal>
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime [(ngModel)]="formitem.date" name="date" id="date" presentation="date" [showDefaultButtons]="true"></ion-datetime>
+        <ion-datetime [(ngModel)]="formitem.date" name="date" id="date" presentation="date" [showDefaultButtons]="true">
+        </ion-datetime>
       </ng-template>
     </ion-modal>
 
-    <div id="b-bottom" >
+    <div id="b-bottom">
 
-      <ion-button type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
+      <ion-button  mode="ios" type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
 
     </div>
   </form>

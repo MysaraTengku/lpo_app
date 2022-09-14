@@ -29,7 +29,7 @@ export class DataService {
       // Read collection '/loans'
       const q = query(
         collection(this.db.firestore, 'forms'),
-        orderBy('time', 'asc')
+        orderBy('time', 'desc')
       );
       let forms = []
       const querySnap = getDocs(q);

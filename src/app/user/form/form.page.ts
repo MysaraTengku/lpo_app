@@ -13,13 +13,13 @@ declare var require: any;
   styleUrls: ['./form.page.scss'],
 })
 export class FormPage implements OnInit {
-
+ 
   formitem = {
     siteName: '',
     country: '',
     classification: '',
-    time: '',
-    date: '',
+    time: new Date().toISOString(),
+    date: new Date().toISOString(),
     obs_name:'',
     obs_title:'',
     obs_comp:'',
@@ -30,7 +30,7 @@ export class FormPage implements OnInit {
   constructor(private data: DataService, private firestore: AngularFirestore,
     private navCtrl: NavController
     ) {
-    
+    console.log(this.formitem)
    }
 
   ngOnInit() {
