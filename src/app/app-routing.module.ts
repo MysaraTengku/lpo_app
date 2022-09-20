@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'list-pdf',
     loadChildren: () => import('./admin/list-pdf/list-pdf.module').then( m => m.ListPdfPageModule)
   },
+  {
+    path: 'frcsmodal',
+    loadChildren: () => import('./user/frcsmodal/frcsmodal.module').then( m => m.FRCSmodalPageModule)
+  },
 
 ];
 

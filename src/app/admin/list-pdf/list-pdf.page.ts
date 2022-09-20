@@ -28,7 +28,13 @@ export class ListPdfPage implements OnInit {
     })
   }
 
-  async downloadForm(username ,dataForm) {
+  async downloadForm(data) {
+
+    let username = data.user
+    let parts = data.parts
+    let taskobs = data.taskObs
+    let frcs = data.frcs
+
     this.presentLoading()
     const formurl = "../../../assets/media/LPO_TEST.pdf"
     const existingPdfBytes = await fetch(formurl).then(res => res.arrayBuffer());
@@ -124,7 +130,15 @@ export class ListPdfPage implements OnInit {
     const repair_main  = form.getCheckBox("RepairMaintMechSchedRoutine")
     const scaffolding_erec  = form.getCheckBox("Scaffolding ErectingDismantling")
 
-
+    const security  = form.getCheckBox("Security")
+    const shipping_rec  = form.getCheckBox("Shipping  Receiving")
+    const subsurface_clear = form.getCheckBox("Subsurface Clearance")
+    const survey  = form.getCheckBox("Surveying")
+    const transport_eqp  = form.getCheckBox("TransportationEquipMatlSupplies")
+    const veg_ctrl  = form.getCheckBox("Vegetation Control  Landscaping")
+    const wall_intstall  = form.getCheckBox("Wall Installation")
+    const other_spec  = form.getCheckBox("Other Specify")
+    
     // associated high risk work (LSA)
     const work_at_height  = form.getCheckBox("Working at Height")
     const work_near_move  = form.getCheckBox("Working Near Moving Equipment")
@@ -192,25 +206,90 @@ export class ListPdfPage implements OnInit {
     //--------------------------- Set name/chkbox ------------------------//
 
     // 1 ROW
-    site.setText(dataForm.siteName)
-    city.setText(dataForm.country)
-    obs_date.setText(moment(dataForm.date).format("DD/MM/YYYY"))
-    obs_time.setText(moment(dataForm.time).format("HH:mm"))
+    site.setText(parts.siteName)
+    city.setText(parts.country)
+    obs_date.setText(moment(parts.date).format("DD/MM/YYYY"))
+    obs_time.setText(moment(parts.time).format("HH:mm"))
 
-    const time = parseInt(moment(dataForm.time).format("HH")) 
+    const time = parseInt(moment(parts.time).format("HH")) 
     // console.log(time < 12)
     time < 12  ? am_chk.check() : pm_chk.check() // check AM/PM
-    dataForm.classification == "peer" ? peer_to_peer.check() : super_to_job.check(); // peer / superv_to_job
+    parts.classification == "peer" ? peer_to_peer.check() : super_to_job.check(); // peer / superv_to_job
 
 
     // 2 ROW    
-    observer_name.setText(dataForm.obs_name)
-    observer_title.setText(dataForm.obs_title)
-    observer_comp.setText(dataForm.obs_comp)
-    observees_title.setText(dataForm.obe_title)
-    observees_comp.setText(dataForm.obe_comp)
+    observer_name.setText(parts.obs_name)
+    observer_title.setText(parts.obs_title)
+    observer_comp.setText(parts.obs_comp)
+    observees_title.setText(parts.obe_title)
+    observees_comp.setText(parts.obe_comp)
 
-   
+    // 3 ROW
+    if (parts.region === "africa") {africa.check()}
+    if (parts.region === "americasSouth") {americas_south.check()}
+    if (parts.region === "asia") {asia.check()}
+    if (parts.region === "canada") {canada.check()}
+    if (parts.region === "europe") {europe.check()}
+    if (parts.region === "middleEast") {middle_east.check()}
+    if (parts.region === "unitedStated") {united_state.check()}
+
+    resp_dept.setText(parts.respDeptDiv)
+    if (parts.propSolutions === "PS-Facilities-Site") {ps_facilities.check()}
+    if (parts.propSolutions === "PS-Projects") {ps_projects.check()}
+
+
+    if (parts.envSol === "ES-Commercial") {es_comm.check()}
+    if (parts.envSol === "ES-RAM") {es_ram.check()}
+    if (parts.envSol === "ES-Projects") {es_proj.check()}
+
+    if (parts.envCountry.includes("US East")) { us_east.check()}
+    if (parts.envCountry.includes("US West / Americas South")) { us_west_as.check()}
+    if (parts.envCountry.includes("IOL Upstream")) { iol_upstream.check() }
+    if (parts.envCountry.includes("IOL Downstream")) { iol_downstream.check() }
+    if (parts.envCountry.includes("UK/NOR/CYP/EGY")) { uk_nor_.check() }
+    if (parts.envCountry.includes("Benelux/FR/IT/GER")) { benelux_fr_.check() }
+    if (parts.envCountry.includes("AP North")) { ap_north.check() }
+    if (parts.envCountry.includes("AP South")) { ap_south.check() }
+
+    if (parts.eps === "GSC SSHE") { gsc_sshe.check() }
+    if (parts.eps === "Global S&S") { global_SS.check() }
+    if (parts.eps === "E&PS Admin/Others") { eps_admin_others.check() }
+
+
+    if (taskobs.taskObs.includes("Asbestos/Lead Work")) { asbestos.check() }
+    if (taskobs.taskObs.includes("Carpentry/Woodwork")) { carpentry.check() }
+    if (taskobs.taskObs.includes("Ceiling Installation")) { cei_install.check() }
+    if (taskobs.taskObs.includes("Cleaning/Housekeeping")) { clean_house.check() }
+    if (taskobs.taskObs.includes("Construction/Installation")) { construction.check() }
+    if (taskobs.taskObs.includes("Crane Operations/Rigging/Lifting")) { crane_ops.check() }
+    if (taskobs.taskObs.includes("Demolition/Removal")) { demo_rem.check() }
+    if (taskobs.taskObs.includes("Drilling/Workover/Workline")) { drilling.check() }
+    if (taskobs.taskObs.includes("Earthmoving/Excavation/Trenching")) { earth_ext.check() }
+    if (taskobs.taskObs.includes("Electrical Repair/Maintenance")) { elec_rep_main.check() }
+    if (taskobs.taskObs.includes("Energy Isolation/Control")) { energy_iso.check() }
+    if (taskobs.taskObs.includes("Flooring Installation")) { flooring_install.check() }
+    if (taskobs.taskObs.includes("Food Preparation / Handling")) { food_prep.check() }
+    if (taskobs.taskObs.includes("Gauging/Sampling")) { gaug_sampling.check() }
+    if (taskobs.taskObs.includes("HVAC")) { hvac.check() }
+    if (taskobs.taskObs.includes("Inspection")) { inspection.check() }
+    if (taskobs.taskObs.includes("Loading/Unloading")) { load_unload.check() }
+    if (taskobs.taskObs.includes("Masonry/Concrete/Paving")) { mason_conct.check() }
+    if (taskobs.taskObs.includes("Mobile Rem/Vac Event")) { mobile_rem.check() }
+    if (taskobs.taskObs.includes("Office Work")) { office_work.check() }
+    if (taskobs.taskObs.includes("O&M (Remediation System)")) { om_remediation.check() }
+    if (taskobs.taskObs.includes("Painting/Coating/Insulation")) { painting_coat.check() }
+    if (taskobs.taskObs.includes("Plumbing/Piping")) { plumbing.check() }
+    if (taskobs.taskObs.includes("Repair/Maint.-Mech-Sched/Routine")) { repair_main.check() }
+    if (taskobs.taskObs.includes("Scaffolding Erecting/Dismantling")) { scaffolding_erec.check() }
+    if (taskobs.taskObs.includes("Security")) { security.check() }
+    if (taskobs.taskObs.includes("Shipping / Receiving")) { shipping_rec.check() }
+    if (taskobs.taskObs.includes("Subsurface Clearance")) { subsurface_clear.check() }
+    if (taskobs.taskObs.includes("Surveying")) { survey.check() }
+    if (taskobs.taskObs.includes("Transportation-Equip/Matl/Supplies")) { transport_eqp.check() }
+    if (taskobs.taskObs.includes("Vegetation Control – Landscaping")) { veg_ctrl.check() }
+    if (taskobs.taskObs.includes("Wall Installation")) { wall_intstall.check() }
+    if (taskobs.taskObs.includes("Other (Specify)")) { other_spec.check() }
+
 
     const pdfBytes = await pdfDoc.save()
 

@@ -3,26 +3,27 @@
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Form</ion-title>
+    <ion-title>Form <span id="slide-count">({{slide}}/??)</span></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content mode="ios">
 
-  <form (ngSubmit)="logForm()" #myForm="ngForm">
+  <!-- First Form  -->
+  <form *ngIf="slide === 1" (ngSubmit)="logForm('next')" #myForm="ngForm">
     <ion-list mode="ios">
       <ion-list-header> Facility/Project Information</ion-list-header>
 
       <ion-item>
         <ion-label position="stacked">1. Facility/Project Site Name</ion-label>
-        <ion-input [(ngModel)]="formitem.siteName" name="siteName"
+        <ion-input [(ngModel)]="particulars.siteName" name="siteName"
           placeholder="e.g Jurong Control Room Migration - JCRM" required></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="stacked">2. City/State/Country</ion-label>
-        <ion-input [(ngModel)]="formitem.country" name="country" type="country" placeholder="e.g Singapore" required>
+        <ion-input [(ngModel)]="particulars.country" name="country" type="country" placeholder="e.g Singapore" required>
         </ion-input>
       </ion-item>
       <ion-item>
@@ -39,19 +40,17 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-label  style="font-size: 14px;">5. Classification<span id="class-check"> (please check one)</span>
+        <ion-label style="font-size: 14px;">5. Classification<span id="class-check"> (please check one)</span>
         </ion-label>
-
       </ion-item>
-      <ion-radio-group [(ngModel)]="formitem.classification" name="classification">
-
+      <ion-radio-group [(ngModel)]="particulars.classification" name="classification">
         <ion-item>
-          <ion-label>Peer to Peer</ion-label>
+          <ion-label style="font-size: 12px">Peer to Peer</ion-label>
           <ion-radio slot="start" value="peer"></ion-radio>
         </ion-item>
 
         <ion-item>
-          <ion-label>Supervisor to Job Expert </ion-label>
+          <ion-label style="font-size: 12px">Supervisor to Job Expert </ion-label>
           <ion-radio slot="start" value="supervisor"></ion-radio>
         </ion-item>
       </ion-radio-group>
@@ -61,46 +60,299 @@
 
       <ion-item>
         <ion-label position="stacked">1. Observer's Name</ion-label>
-        <ion-input [(ngModel)]="formitem.obs_name" name="obs_name" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="particulars.obs_name" name="obs_name" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">2. Observer's Title</ion-label>
-        <ion-input [(ngModel)]="formitem.obs_title" name="obs_title" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="particulars.obs_title" name="obs_title" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">3. Observer's Company</ion-label>
-        <ion-input [(ngModel)]="formitem.obs_comp" name="obs_comp" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="particulars.obs_comp" name="obs_comp" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">4. Observee's Title</ion-label>
-        <ion-input [(ngModel)]="formitem.obe_title" name="obe_title" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="particulars.obe_title" name="obe_title" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">5. Observee's Company</ion-label>
-        <ion-input [(ngModel)]="formitem.obe_comp" name="obe_comp" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="particulars.obe_comp" name="obe_comp" required></ion-input>
       </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">Region</ion-label>
+        <ion-select required interface="popover" [(ngModel)]="particulars.region" name="region"
+          placeholder="Select Region">
+          <ion-select-option value="africa">Africa</ion-select-option>
+          <ion-select-option value="americasSouth">Americas South</ion-select-option>
+          <ion-select-option value="asia">Asia</ion-select-option>
+          <ion-select-option value="canada">Canada</ion-select-option>
+          <ion-select-option value="europe">Europe</ion-select-option>
+          <ion-select-option value="middleEast">Middle East</ion-select-option>
+          <ion-select-option value="unitedStates">United States</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">Responsible Department/Division</ion-label>
+        <ion-input [(ngModel)]="particulars.respDeptDiv" name="respDeptDiv" placeholder="e.g ?" required></ion-input>
+      </ion-item>
+      <!-- Property Solutions -->
+      <ion-item lines="none">
+        <ion-label style="font-size: 14px;">Property Solutions<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.propSolutions" name="propSolutions">
+        <ion-item *ngFor="let prop of propSol">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <!-- Environmental Solutions -->
+      <ion-item lines="none">
+        <ion-label style="font-size: 14px;">Environmental Solutions<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.envSol" name="envSol">
+        <ion-item *ngFor="let prop of envSol">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+
+      <!-- Environmental Country -->
+      <ion-item>
+        <ion-label position="stacked">Environmental Country</ion-label>
+        <ion-select mode="md" required [(ngModel)]="particulars.envCountry" name="envCountry"
+          placeholder="Select Env Country" [multiple]="true">
+          <ion-select-option *ngFor="let prop of envCountry" [value]="prop">{{prop}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- E&PS -->
+      <ion-item lines="none">
+        <ion-label style="font-size: 14px;">E&PS<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.eps" name="eps">
+        <ion-item *ngFor="let prop of eps">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <!-- END OF FORM 1 -->
+      <span *ngIf="!myForm.form.valid" id="fill-up">Please fill up all the fields</span>
     </ion-list>
+
+
 
 
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime [(ngModel)]="formitem.time" name="time" id="time" presentation="time" [showDefaultButtons]="true">
+        <ion-datetime [(ngModel)]="particulars.time" name="time" id="time" presentation="time"
+          [showDefaultButtons]="true">
         </ion-datetime>
       </ng-template>
     </ion-modal>
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime [(ngModel)]="formitem.date" name="date" id="date" presentation="date" [showDefaultButtons]="true">
+        <ion-datetime [(ngModel)]="particulars.date" name="date" id="date" presentation="date"
+          [showDefaultButtons]="true">
         </ion-datetime>
       </ng-template>
     </ion-modal>
 
     <div id="b-bottom">
+      <!-- [disabled]="!myForm.form.valid" -->
+      <ion-button mode="ios" type="submit" expand="block" fill="outline">Next
+      </ion-button>
 
-      <ion-button  mode="ios" type="submit" expand="block" fill="outline" [disabled]="!myForm.form.valid">Submit</ion-button>
+
+    </div>
+  </form>
+
+
+
+
+  <!-- Second Form -->
+  <form *ngIf="slide === 2" (ngSubmit)="logForm('next')" #myForm1="ngForm">
+    <ion-list mode="ios">
+      <ion-list-header>Task Observed </ion-list-header>
+      <span id="brief-header"> (primary job associated with activity observed, avoid
+        “Other” if possible)</span>
+      <!-- Environmental Country -->
+      <ion-item>
+        <!-- <ion-label position="stacked">Environmental Country</ion-label> -->
+        <ion-select mode="md" required [(ngModel)]="taskObs.taskobs" name="taskobs" placeholder="Select Task Observed"
+          [multiple]="true">
+          <ion-select-option *ngFor="let prop of task_obs" [value]="prop">{{prop}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="taskObs.taskobs.includes('Other (Specify)')">
+        <ion-label position="stacked">Other (Specify)</ion-label>
+        <ion-input [(ngModel)]="particulars.siteName" name="siteName" placeholder="e.g. ??" required></ion-input>
+      </ion-item>
+
+      <ion-list-header>Associated High Risk Work</ion-list-header>
+      <label id="brief-header">(LSA activity) categories</label>
+      <ion-item>
+        <ion-select mode="md" required [(ngModel)]="taskObs.ass_high_risk" name="ass_high_risk"
+          placeholder="Select High Risk Work">
+          <ion-select-option *ngFor="let prop of ass_high_risk" [value]="prop">{{prop}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Brief Description of Task Observed -->
+      <ion-list-header>Brief Description of Task Observed and Work Area Conditions</ion-list-header>
+      <span id="brief-header">(e.g., weather, traffic, confining, etc.)
+        (Why was this task chosen as a target area?)</span>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="taskObs.brief_desc" name="brief_desc" required inputmode="text" auto-grow
+          placeholder="Enter Brief Description..."></ion-textarea>
+      </ion-item>
+
+      <!-- Positive Comments -->
+      <ion-list-header>Positive Comments</ion-list-header>
+      <span id="brief-header">(provide five or six specific examples of the most significant correct
+        behaviors/conditions observed)</span>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="taskObs.pos_comments" name="pos_comments" required inputmode="text" auto-grow
+          placeholder="Enter Brief Description..."></ion-textarea>
+      </ion-item>
+
+
+      <!-- Feedback Session -->
+      <ion-list-header>Feedback Session</ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">1. Feedback Session Conducted By</ion-label>
+        <ion-input [(ngModel)]="taskObs.fb_session_cond" name="fb_session_cond" type="text" placeholder="" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">2. Observee's Supervisor</ion-label>
+        <ion-input [(ngModel)]="taskObs.obs_superv" name="obs_superv" type="text" placeholder="" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">3. Feedback Session Date<span id="class-check"> (automatically set to current
+            date)</span></ion-label>
+        <ion-datetime-button datetime="date1"></ion-datetime-button>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">4. Feedback Session Time <span id="class-check"> (automatically set to current
+            time)</span></ion-label>
+        <ion-datetime-button datetime="time1"></ion-datetime-button>
+
+      </ion-item>
+
+    </ion-list>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime [(ngModel)]="taskObs.fb_sess_date" name="fb_sess_date" id="time1" presentation="time"
+          [showDefaultButtons]="true">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime [(ngModel)]="taskObs.fb_sess_time" name="fb_sess_time" id="date1" presentation="date"
+          [showDefaultButtons]="true">
+        </ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+
+
+    <div id="double-button">
+      <ion-button mode="ios" (click)="logForm('previous')" expand="block" fill="outline">Back</ion-button>
+      <!-- [disabled]="!myForm1.form.valid" -->
+      <ion-button mode="ios" type="submit" expand="block">Next</ion-button>
+
+
+    </div>
+  </form>
+
+
+
+  <!-- Third Form -->
+  <form *ngIf="slide === 3" (ngSubmit)="logForm('subm')" #myForm2="ngForm">
+    <ion-list mode="ios">
+      <ion-list-header>Solution(s) Developed with FRCS</ion-list-header>
+      <span id="brief-header">Complete and attach FRCS form and answer all 7 factor questions. If answering NO to
+        Factors 1 – 4 identify root cause(s) and explain why QI(s) occurred. If
+        answering YES to Factors 5 – 7 circle the root cause(s). Transfer the solutions guidance that addresses each
+        root cause from the FRCS form to this form. </span>
+
+
+      <ion-list-header>Personal Protective Equipment</ion-list-header>
+      <span id="brief-header">(Write number of times line item observed
+        as performed/addressed in accordance with
+        safe work standards)
+      </span>
+
+
+      <ion-item>
+        <ion-label position="stacked">1. (00101) Hearing protection (e.g., ear plugs, ear muffs) </ion-label>
+        <ion-select [(ngModel)]="frcs._00101.choice" name="_00101" (ionChange)="frcsChange('_00101')" mode="md" interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+
+
+      </ion-item>
+      <ion-item *ngIf="frcs._00101.choice" lines="none">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00101.choice" [(ngModel)]="frcs._00101.value" 
+          name="_00101" type="number" placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button *ngIf="frcs._00101.choice === 'questionable'" 
+          (click)="frcsModal('_00101', '1. (00101) Hearing protection (e.g., ear plugs, ear muffs) ')">Fill up FRCS</ion-button>
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">2. (00102) Head protection (e.g., hard hat)</ion-label>
+        <ion-select  [(ngModel)]="frcs._00102.choice" name="_00102"  (ionChange)="frcsChange('_00102')" mode="md" interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="frcs._00102.choice" lines="none">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00102.choice" [(ngModel)]="frcs._00102.value" 
+          name="_00102" type="number" placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button *ngIf="frcs._00102.choice === 'questionable'" 
+          (click)="frcsModal('_00102', '2. (00102) Head protection (e.g., hard hat)')">Fill up FRCS</ion-button>
+        </div>
+      </ion-item>
+  
+    </ion-list>
+
+
+    <div id="double-button">
+      <ion-button mode="ios" (click)="logForm('previous')" expand="block" fill="outline">Back</ion-button>
+      <!-- [disabled]="!myForm2.form.valid" -->
+      <ion-button mode="ios" type="submit" expand="block">Next</ion-button>
+
+
+
+
 
     </div>
   </form>

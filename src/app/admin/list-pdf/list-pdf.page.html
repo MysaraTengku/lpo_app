@@ -1,5 +1,5 @@
-<ion-header mode="ios" >
-  <ion-toolbar mode="ios">
+<ion-header >
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content mode="ios">
+<ion-content >
 
 
   <div id="list-card">
@@ -23,7 +23,7 @@
         Date submitted: {{form.time.seconds*1000 | date: 'd MMM YYYY, HH:mm'}}
       </ion-card-content>
 
-      <ion-button (click)="downloadForm(form.user ,form.form)" id="download" fill="clear">
+      <ion-button (click)="downloadForm(form)" id="download" fill="clear">
         <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
     </ion-button>
     </ion-card>

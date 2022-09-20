@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PdfComponent } from './pdf.component';
+import { FRCSmodalPage } from './frcsmodal.page';
 
-describe('PdfComponent', () => {
-  let component: PdfComponent;
-  let fixture: ComponentFixture<PdfComponent>;
+describe('FRCSmodalPage', () => {
+  let component: FRCSmodalPage;
+  let fixture: ComponentFixture<FRCSmodalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PdfComponent ],
+      declarations: [ FRCSmodalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PdfComponent);
+    fixture = TestBed.createComponent(FRCSmodalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
