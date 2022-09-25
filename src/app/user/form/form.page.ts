@@ -9,6 +9,9 @@ import { FRCSmodalPage } from '../frcsmodal/frcsmodal.page';
 import { FORMERR } from 'dns';
 
 declare var require: any;
+
+
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.page.html',
@@ -99,6 +102,7 @@ export class FormPage implements OnInit {
 
   taskObs = {
     taskobs: [],
+    other_spec: '',
     ass_high_risk: '',
     brief_desc: '',
     pos_comments: '',
@@ -125,13 +129,12 @@ export class FormPage implements OnInit {
   ngOnInit() {}
 
   logForm(task) {
-    console.log(this.particulars);
+    
     if (task === 'next') {
       this.slide += 1;
     } else if (task === 'previous') {
       this.slide -= 1;
     } else {
-      console.log(this.particulars);
       this.data.addForm({user: this.particulars.obs_name, time: serverTimestamp(),
         parts: this.particulars,
         taskObs: this.taskObs,
@@ -156,12 +159,29 @@ export class FormPage implements OnInit {
       component: FRCSmodalPage,
       componentProps: {
         '_id': id,
-        '_title': title
+        '_title': title,
+        '_data': this.frcs.frcs_form.find(({_id}) => _id == id)
       }
     });
 
     modal.onDidDismiss().then((modalDataResponse) => {
-      
+      const data = modalDataResponse.data
+      // if id available
+      if (data.isDelete) {
+        console.log('delete')
+        this.frcs.frcs_form = this.frcs.frcs_form.filter(({isDelete}) => isDelete !== true)
+      } else if (data._id && !data.done) {
+        data.done = true
+        this.frcs.frcs_form.push(data)
+      } else if (data._id && !data.done) {
+        this.frcs.frcs_form.map(e => {
+          if (e._id === data._id) {
+            e = data
+          }
+        })
+      }
+      console.log(this.frcs)
+
     });
 
     return await modal.present();

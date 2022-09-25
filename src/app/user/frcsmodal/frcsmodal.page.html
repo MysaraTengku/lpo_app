@@ -4,209 +4,224 @@
       <ion-button (click)="close()"> Close </ion-button>
     </ion-buttons>
     <ion-title>FRCSmodal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="menu()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content mode="ios">
-  <ion-list mode="ios">
-    <!-- Factor 1 -->
-    <ion-list-header>Factor 1 </ion-list-header>
-    <span id="brief-header">Is there adequate
-      documentation explaining how to do
-      this task? — if conscious decision not to have
-      documentation, verify decision
-      and continue to
-      Factor 2.</span>
+  <form (ngSubmit)="logForm()" #myForm="ngForm">
 
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Why doesn’t adequate
-        documentation exist for
-        this task?
-        Identify root cause(s)</ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-    </ion-item>
+    <ion-list mode="ios">
+      <!-- Factor 1 -->
+      <ion-list-header>Factor 1 </ion-list-header>
+      <span id="brief-header">Is there adequate
+        documentation explaining how to do
+        this task? — if conscious decision not to have
+        documentation, verify decision
+        and continue to
+        Factor 2.</span>
 
-
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain who will develop
-        procedure, JLA, or SWP for this task (who
-        writes, reviews, & approves, due date, etc.)</ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-    </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Why doesn’t adequate
+          documentation exist for
+          this task?
+          Identify root cause(s)</ion-label>
+        <ion-textarea autofocus [(ngModel)]="frcs.fact1.root" name="root" required inputmode="text" auto-grow
+          placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
 
 
-    <!-- Factor 2 -->
-    <ion-list-header>Factor 2 </ion-list-header>
-    <span id="brief-header">If tools are needed
-      for task, are they available,
-      operable, safely maintained &
-      is there proper workplace
-      design?</span>
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Why aren’t tools available, operable, safely
-        maintained and/or why isn’t there proper
-        workplace design?
-        Identify root cause(s).</ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-    </ion-item>
-
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain specifically how tools will be
-        made available, operable, safely maintained for
-        task (who makes available, due date, etc.) and/or
-        how workplace design will be made proper (who
-        is responsible, due date, etc.).
-      </ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-    </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain who will develop
+          procedure, JLA, or SWP for this task (who
+          writes, reviews, & approves, due date, etc.)</ion-label>
+        <ion-textarea [(ngModel)]="frcs.fact1.solution" name="solution" required inputmode="text" auto-grow
+          placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
 
 
-    <!-- Factor 3-->
-    <ion-list-header>Factor 3</ion-list-header>
-    <span id="brief-header">Has your supervisor 
-      consistently told you to do this 
-      task, as well as ALL tasks, according
-      to procedures or acceptable 
-      practices?</span>
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Why didn’t this face-to-face 
-        communication occur consistently? 
-        Identify root cause(s).
+      <!-- Factor 2 -->
+      <ion-list-header>Factor 2 </ion-list-header>
+      <span id="brief-header">If tools are needed
+        for task, are they available,
+        operable, safely maintained &
+        is there proper workplace
+        design?</span>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Why aren’t tools available, operable, safely
+          maintained and/or why isn’t there proper
+          workplace design?
+          Identify root cause(s).</ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain specifically how tools will be
+          made available, operable, safely maintained for
+          task (who makes available, due date, etc.) and/or
+          how workplace design will be made proper (who
+          is responsible, due date, etc.).
         </ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-    </ion-item>
-
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain how FLS will consistently communicate 
-        face-to-face with person to do this task, as well as ALL 
-        tasks, according to procedures or acceptable practices.
-      </ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-    </ion-item>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
 
 
-    <!-- Factor 4 -->
-    <ion-list-header>Factor 4</ion-list-header>
-    <span id="brief-header">Are you familiar with 
-      task documentation & do you 
-      know how to do task according to
-      documentation or acceptable 
-      practices?</span>
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Why doesn’t person know how to do task according 
-        to documentation or acceptable practices? 
-        Identify root cause(s).
+      <!-- Factor 3-->
+      <ion-list-header>Factor 3</ion-list-header>
+      <span id="brief-header">Has your supervisor
+        consistently told you to do this
+        task, as well as ALL tasks, according
+        to procedures or acceptable
+        practices?</span>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Why didn’t this face-to-face
+          communication occur consistently?
+          Identify root cause(s).
         </ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-    </ion-item>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
 
-    <ion-item>
-      <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain how person will be shown how to do 
-        task according to documentation or acceptable practices
-        (who will show person, due date, etc.).
-      </ion-label>
-      <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-    </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain how FLS will consistently communicate
+          face-to-face with person to do this task, as well as ALL
+          tasks, according to procedures or acceptable practices.
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
 
 
-        <!-- Factor 5 -->
-        <ion-list-header>Factor 5</ion-list-header>
+      <!-- Factor 4 -->
+      <ion-list-header>Factor 4</ion-list-header>
+      <span id="brief-header">Are you familiar with
+        task documentation & do you
+        know how to do task according to
+        documentation or acceptable
+        practices?</span>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Why doesn’t person know how to do task according
+          to documentation or acceptable practices?
+          Identify root cause(s).
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain how person will be shown how to do
+          task according to documentation or acceptable practices
+          (who will show person, due date, etc.).
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
+
+
+      <!-- Factor 5 -->
+      <ion-list-header>Factor 5</ion-list-header>
+      <ion-item>
+        <ion-select [(ngModel)]="frcs.fact5.choice" name="choice" placeholder="Did Anything go wrong?">
+          <ion-select-option value="no">No</ion-select-option>
+          <ion-select-option value="yes">Yes</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div *ngIf="frcs.fact5.choice === 'no'">
+        <span id="brief-header">Root cause is: Person did not follow
+          procedures or acceptable practices for
+          this task on other occasions & there were
+          no negative consequences.</span>
         <ion-item>
-          <ion-select  [(ngModel)]="frcs.fact5.choice" name="choice" placeholder="Did Anything go wrong?" >
-            <ion-select-option value="no">No</ion-select-option>
-            <ion-select-option value="yes">Yes</ion-select-option>
-          </ion-select>
-        </ion-item>
-        
-        <div *ngIf="frcs.fact5.choice === 'no'">
-          <span id="brief-header">Root cause is: Person did not follow 
-            procedures or acceptable practices for 
-            this task on other occasions & there were 
-            no negative consequences.</span>
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or 
-              acceptable practice was not followed? 
-              </ion-label>
-            <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would 
-              happen (what consequences would be) if he/she 
-              continues to perform task this way just because 
-              he/she did it in past & no incident occurred.
-            </ion-label>
-            <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-          </ion-item>  
-        </div>
-        <div *ngIf="frcs.fact5.choice === 'yes'">
-          <span id="brief-header">Root cause is: Person did not follow 
-            procedures or acceptable practices for 
-            this task on other occasions.
-            </span>
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or 
-              acceptable practice was not followed? 
-              </ion-label>
-            <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would 
-              happen (what consequences would be) if 
-              he/she continues to perform task this way.
-              
-            </ion-label>
-            <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
-          </ion-item>  
-        </div>
-
-
-        <!-- Factor 6 -->
-        <ion-list-header>Factor 6</ion-list-header>
-        <span id="brief-header">Root cause is: Person did not follow procedures or 
-          acceptable practices for this task because he/she has
-          easier, faster or “better” way of doing task. </span>
-        <ion-item>
-          <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable 
-            practice was not followed?
-            </ion-label>
+          <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or
+            acceptable practice was not followed?
+          </ion-label>
           <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
         </ion-item>
-    
+
         <ion-item>
-          <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would happen 
-            (what consequences would be) if he/she continues to 
-            perform task this way just because he/she has an easier, 
-            faster, or “better” way to do task.
+          <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would
+            happen (what consequences would be) if he/she
+            continues to perform task this way just because
+            he/she did it in past & no incident occurred.
           </ion-label>
           <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
         </ion-item>
-
-        
-        <!-- Factor 7 -->
-        <ion-list-header>Factor 7</ion-list-header>
-        <span id="brief-header">Root cause is: FLS, Manager or peer observed 
-          person not following procedures or acceptable 
-          practices for this task & tolerated it.
-          </span>
+      </div>
+      <div *ngIf="frcs.fact5.choice === 'yes'">
+        <span id="brief-header">Root cause is: Person did not follow
+          procedures or acceptable practices for
+          this task on other occasions.
+        </span>
         <ion-item>
-          <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable 
-            practice was not followed?
-            </ion-label>
+          <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or
+            acceptable practice was not followed?
+          </ion-label>
           <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
         </ion-item>
-    
+
         <ion-item>
-          <ion-label class="ion-text-wrap" position="stacked">Solution(s): Describe how SLM will show FLS how to build right 
-            workplace culture & send right message via effective — LPSA 
-            stewardship, V&V solutions, LPO feedback sessions & monthly 
-            LPS stewardship sessions
+          <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would
+            happen (what consequences would be) if
+            he/she continues to perform task this way.
+
           </ion-label>
           <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
         </ion-item>
-        
-  </ion-list>
+      </div>
 
+
+      <!-- Factor 6 -->
+      <ion-list-header>Factor 6</ion-list-header>
+      <span id="brief-header">Root cause is: Person did not follow procedures or
+        acceptable practices for this task because he/she has
+        easier, faster or “better” way of doing task. </span>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable
+          practice was not followed?
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Write down what person said would happen
+          (what consequences would be) if he/she continues to
+          perform task this way just because he/she has an easier,
+          faster, or “better” way to do task.
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
+
+
+      <!-- Factor 7 -->
+      <ion-list-header>Factor 7</ion-list-header>
+      <span id="brief-header">Root cause is: FLS, Manager or peer observed
+        person not following procedures or acceptable
+        practices for this task & tolerated it.
+      </span>
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable
+          practice was not followed?
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="ion-text-wrap" position="stacked">Solution(s): Describe how SLM will show FLS how to build
+          right
+          workplace culture & send right message via effective — LPSA
+          stewardship, V&V solutions, LPO feedback sessions & monthly
+          LPS stewardship sessions
+        </ion-label>
+        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+      </ion-item>
+
+
+
+    </ion-list>
+    <div id="modal-button">
+      <ion-button id="b-bottom" mode="ios" type="submit" expand="block">Submit</ion-button>
+
+    </div>
+  </form>
 
 </ion-content>

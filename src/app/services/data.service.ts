@@ -39,7 +39,6 @@ export class DataService {
           let form = e.data();
           form.id = e.id; // add id key value
           forms.push(form)
-          console.log(e.data())
         })
         obs.next(forms)
       })

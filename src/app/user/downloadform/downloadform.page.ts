@@ -39,8 +39,6 @@ export class DownloadformPage implements OnInit {
       nn.setText("test " + i)
       nnn.setText("Testing liao good")
       nedw.setText("Yo sup " + i)
-
-      console.log(i)
  
       const newpageBytes = await fmcs.save()
 
@@ -55,8 +53,6 @@ export class DownloadformPage implements OnInit {
     }
     const pdfBytes = await pdfDocd.save()
 
-    console.log('yo')
-   
     const pdfName = 'your_pdf_file'; // pdf file name
 
     var blob = new Blob([pdfBytes], {type: "application/pdf"}); // prepare file

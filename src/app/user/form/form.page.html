@@ -106,7 +106,7 @@
         <ion-label style="font-size: 14px;">Property Solutions<span id="class-check"> (please check one)</span>
         </ion-label>
       </ion-item>
-      <ion-radio-group [(ngModel)]="particulars.propSolutions" name="propSolutions">
+      <ion-radio-group [(ngModel)]="particulars.propSol" name="propSol">
         <ion-item *ngFor="let prop of propSol">
           <ion-label style="font-size: 12px">{{prop}}</ion-label>
           <ion-radio slot="start" [value]="prop"></ion-radio>
@@ -151,7 +151,13 @@
       <span *ngIf="!myForm.form.valid" id="fill-up">Please fill up all the fields</span>
     </ion-list>
 
+    <div id="b-bottom">
+      <!-- [disabled]="!myForm.form.valid" -->
+      <ion-button mode="ios" type="submit" expand="block" fill="outline">Next
+      </ion-button>
 
+
+    </div>
 
 
 
@@ -171,20 +177,12 @@
       </ng-template>
     </ion-modal>
 
-    <div id="b-bottom">
-      <!-- [disabled]="!myForm.form.valid" -->
-      <ion-button mode="ios" type="submit" expand="block" fill="outline">Next
-      </ion-button>
 
-
-    </div>
   </form>
 
 
-
-
   <!-- Second Form -->
-  <form *ngIf="slide === 2" (ngSubmit)="logForm('next')" #myForm1="ngForm">
+  <form *ngIf="slide === 2" (ngSubmit)="logForm('submit')" #myForm1="ngForm">
     <ion-list mode="ios">
       <ion-list-header>Task Observed </ion-list-header>
       <span id="brief-header"> (primary job associated with activity observed, avoid
@@ -200,7 +198,7 @@
 
       <ion-item *ngIf="taskObs.taskobs.includes('Other (Specify)')">
         <ion-label position="stacked">Other (Specify)</ion-label>
-        <ion-input [(ngModel)]="particulars.siteName" name="siteName" placeholder="e.g. ??" required></ion-input>
+        <ion-input [(ngModel)]="taskObs.other_spec" name="other_spec" placeholder="e.g. ??" required></ion-input>
       </ion-item>
 
       <ion-list-header>Associated High Risk Work</ion-list-header>
@@ -237,7 +235,7 @@
       <ion-list-header>Feedback Session</ion-list-header>
       <ion-item>
         <ion-label position="stacked">1. Feedback Session Conducted By</ion-label>
-        <ion-input [(ngModel)]="taskObs.fb_session_cond" name="fb_session_cond" type="text" placeholder="" required>
+        <ion-input [(ngModel)]="taskObs.fb_sess_cond" name="fb_sess_cond" type="text" placeholder="" required>
         </ion-input>
       </ion-item>
       <ion-item>
@@ -279,8 +277,10 @@
 
     <div id="double-button">
       <ion-button mode="ios" (click)="logForm('previous')" expand="block" fill="outline">Back</ion-button>
+
+      <ion-button mode="ios" (click)="logForm('next')" expand="block" fill="outline">Next</ion-button>
       <!-- [disabled]="!myForm1.form.valid" -->
-      <ion-button mode="ios" type="submit" expand="block">Next</ion-button>
+      <!-- <ion-button mode="ios" type="submit"  expand="block">Submit</ion-button> -->
 
 
     </div>
@@ -307,53 +307,61 @@
 
       <ion-item>
         <ion-label position="stacked">1. (00101) Hearing protection (e.g., ear plugs, ear muffs) </ion-label>
-        <ion-select [(ngModel)]="frcs._00101.choice" name="_00101" (ionChange)="frcsChange('_00101')" mode="md" interface="popover" placeholder="">
+        <ion-select [(ngModel)]="frcs._00101.choice" name="_00101" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
 
 
       </ion-item>
-      <ion-item *ngIf="frcs._00101.choice" lines="none">
+      <div id="questionable" *ngIf="frcs._00101.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00101.choice" [(ngModel)]="frcs._00101.value" 
-          name="_00101" type="number" placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00101.choice" [(ngModel)]="frcs._00101.value" name="_00101" type="number"
+            placeholder="Enter Number of Times" required>
           </ion-input>
-          <ion-button *ngIf="frcs._00101.choice === 'questionable'" 
-          (click)="frcsModal('_00101', '1. (00101) Hearing protection (e.g., ear plugs, ear muffs) ')">Fill up FRCS</ion-button>
+          <ion-button size="small" *ngIf="frcs._00101.choice === 'questionable'"
+            (click)="frcsModal('_00101', '1. (00101) Hearing protection (e.g., ear plugs, ear muffs) ')">Fill up FRCS
+          </ion-button>
         </div>
-      </ion-item>
+        <ion-input *ngIf="frcs._00101.choice === 'questionable'" [(ngModel)]="frcs._00101.comments" name="_00101"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
 
 
       <ion-item>
         <ion-label position="stacked">2. (00102) Head protection (e.g., hard hat)</ion-label>
-        <ion-select  [(ngModel)]="frcs._00102.choice" name="_00102"  (ionChange)="frcsChange('_00102')" mode="md" interface="popover" placeholder="">
+        <ion-select [(ngModel)]="frcs._00102.choice" name="_00102" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item *ngIf="frcs._00102.choice" lines="none">
+
+      <div id="questionable" *ngIf="frcs._00102.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00102.choice" [(ngModel)]="frcs._00102.value" 
-          name="_00102" type="number" placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00102.choice" [(ngModel)]="frcs._00102.value" name="_00102" type="number"
+            placeholder="Enter Number of Times" required>
           </ion-input>
-          <ion-button *ngIf="frcs._00102.choice === 'questionable'" 
-          (click)="frcsModal('_00102', '2. (00102) Head protection (e.g., hard hat)')">Fill up FRCS</ion-button>
+          <ion-button size="small" *ngIf="frcs._00102.choice === 'questionable'"
+            (click)="frcsModal('_00102', '2. (00102) Head protection (e.g., hard hat)')">Fill up FRCS</ion-button>
         </div>
-      </ion-item>
-  
+        <ion-input *ngIf="frcs._00102.choice === 'questionable'" [(ngModel)]="frcs._00102.comments" name="_00102"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
+
     </ion-list>
 
 
     <div id="double-button">
       <ion-button mode="ios" (click)="logForm('previous')" expand="block" fill="outline">Back</ion-button>
-      <!-- [disabled]="!myForm2.form.valid" -->
-      <ion-button mode="ios" type="submit" expand="block">Next</ion-button>
 
-
-
-
-
+      <ion-button mode="ios" type="submit" [disabled]="!myForm2.form.valid" expand="block">Next</ion-button>
     </div>
   </form>
+
 </ion-content>
