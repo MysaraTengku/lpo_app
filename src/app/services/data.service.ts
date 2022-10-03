@@ -7,6 +7,8 @@ import {
   onSnapshot,
   orderBy,
   getDocs,
+  limit,
+  startAfter,
 } from 'firebase/firestore';
 
 import { Observable } from 'rxjs';
@@ -22,27 +24,65 @@ export class DataService {
     return notesRef.add(form);
   }
 
-   getForms(): Observable<any> {
-
-
+  getSize(): Observable<any> {
     return new Observable((obs) => {
-      // Read collection '/loans'
+      const lengthForms = collection(this.db.firestore, "forms");
+      const docSnap = getDocs(lengthForms)
+      docSnap.then(e => {
+        obs.next(e.size)
+      })
+    });
+  }
+
+
+   getForms(): Observable<any> {
+     return new Observable((obs) => {
       const q = query(
         collection(this.db.firestore, 'forms'),
-        orderBy('time', 'desc')
-      );
+        orderBy('time', 'desc'),
+        limit(10));
+
       let forms = []
       const querySnap = getDocs(q);
+  
       querySnap.then(e => {
-        
+        const lastVisible = e.docs[e.docs.length-1];
+
         e.docs.forEach(e => {
           let form = e.data();
           form.id = e.id; // add id key value
           forms.push(form)
         })
-        obs.next(forms)
+        obs.next({forms, lastVisible})
       })
   
     });
+  }
+
+  getNext(last): Observable<any> {
+    return new Observable((obs) => {
+      const q = query(
+        collection(this.db.firestore, 'forms'),
+        orderBy('time', 'desc'),
+        startAfter(last),
+        limit(10)
+      );
+
+      
+      let forms = []
+      const querySnap = getDocs(q);
+  
+      querySnap.then(e => {
+        const lastVisible = e.docs[e.docs.length-1];
+
+        e.docs.forEach(e => {
+          let form = e.data();
+          form.id = e.id; // add id key value
+          forms.push(form)
+        })
+        obs.next({forms, lastVisible})
+      })
+
+    })
   }
 }

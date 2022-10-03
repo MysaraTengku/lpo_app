@@ -115,7 +115,13 @@ export class FormPage implements OnInit {
   frcs = {
     _00101: { choice: '', val: '', comments: '' },
     _00102: { choice: '', val: '', comments: '' },
-
+    _00103: { choice: '', val: '', comments: '' },
+    _00104: { choice: '', val: '', comments: '' },
+    _00105: { choice: '', val: '', comments: '' },
+    _00106: { choice: '', val: '', comments: '' },
+    _00107: { choice: '', val: '', comments: '' },
+    _00108: { choice: '', val: '', comments: '' },
+    _00109: { choice: '', val: '', comments: '' },
     frcs_form: [],
   };
 
@@ -140,7 +146,7 @@ export class FormPage implements OnInit {
         taskObs: this.taskObs,
         frcs: this.frcs
       }).then(e => {
-          this.navCtrl.back();
+          this.navCtrl.navigateRoot("/");
       }).catch(e => {
         console.log("error occured")
       })
@@ -149,7 +155,7 @@ export class FormPage implements OnInit {
 
   frcsChange(item) {
 
-    console.log(item)
+    // console.log(item)
   }
 
 

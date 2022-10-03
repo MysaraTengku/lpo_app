@@ -354,6 +354,165 @@
 
 
 
+      <ion-item>
+        <ion-label position="stacked">3. (00103) Eye/face protection (e.g., safety glasses, face shield)</ion-label>
+        <ion-select [(ngModel)]="frcs._00103.choice" name="_00103" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00103.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00103.choice" [(ngModel)]="frcs._00103.value" name="_00103" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00103.choice === 'questionable'"
+            (click)="frcsModal('_00103', '3. (00103) Eye/face protection (e.g., safety glasses, face shield)')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00103.choice === 'questionable'" [(ngModel)]="frcs._00103.comments" name="_00103"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="stacked">4. (00104) Hand protection</ion-label>
+        <ion-select [(ngModel)]="frcs._00104.choice" name="_00104" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00104.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00104.choice" [(ngModel)]="frcs._00104.value" name="_00104" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00104.choice === 'questionable'"
+            (click)="frcsModal('_00104', '4. (00104) Hand protection')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00104.choice === 'questionable'" [(ngModel)]="frcs._00104.comments" name="_00104"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="stacked">5. (00105) Foot protection</ion-label>
+        <ion-select [(ngModel)]="frcs._00105.choice" name="_00105" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00105.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00105.choice" [(ngModel)]="frcs._00105.value" name="_00105" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00105.choice === 'questionable'"
+            (click)="frcsModal('_00105', '5. (00105) Foot protection')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00105.choice === 'questionable'" [(ngModel)]="frcs._00105.comments" name="_00105"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="stacked">6. (00106) Protective clothing</ion-label>
+        <ion-select [(ngModel)]="frcs._00106.choice" name="_00106" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00106.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00106.choice" [(ngModel)]="frcs._00106.value" name="_00106" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00106.choice === 'questionable'"
+            (click)="frcsModal('_00106', '6. (00106) Protective clothing')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00106.choice === 'questionable'" [(ngModel)]="frcs._00106.comments" name="_00106"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
+      <ion-item>
+        <ion-label position="stacked">7. (00107) Respiratory protection</ion-label>
+        <ion-select [(ngModel)]="frcs._00107.choice" name="_00107" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00107.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00107.choice" [(ngModel)]="frcs._00107.value" name="_00107" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00107.choice === 'questionable'"
+            (click)="frcsModal('_00107', '7. (00107) Respiratory protection')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00107.choice === 'questionable'" [(ngModel)]="frcs._00107.comments" name="_00107"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+      
+      <ion-item>
+        <ion-label position="stacked">8. (00108) Fall protection (e.g., full body harness/lanyard/lifeline)</ion-label>
+        <ion-select [(ngModel)]="frcs._00108.choice" name="_00108" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00108.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00108.choice" [(ngModel)]="frcs._00108.value" name="_00108" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00108.choice === 'questionable'"
+            (click)="frcsModal('_00108', '8. (00108) Fall protection (e.g., full body harness/lanyard/lifeline)')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00108.choice === 'questionable'" [(ngModel)]="frcs._00108.comments" name="_00108"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">9. (00114) Other; Specify</ion-label>
+        <ion-select [(ngModel)]="frcs._00108.choice" name="_00108" (ionChange)="frcsChange($event)" mode="md"
+          interface="popover" placeholder="">
+          <ion-select-option value="correct">Correct</ion-select-option>
+          <ion-select-option value="questionable">Questionable</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div id="questionable" *ngIf="frcs._00109.choice">
+        <div style="display: flex;">
+          <ion-input *ngIf="frcs._00109.choice" [(ngModel)]="frcs._00109.value" name="_00109" type="number"
+            placeholder="Enter Number of Times" required>
+          </ion-input>
+          <ion-button size="small" *ngIf="frcs._00109.choice === 'questionable'"
+            (click)="frcsModal('_00109', '9. (00114) Other; Specify')">Fill up FRCS</ion-button>
+        </div>
+        <ion-input *ngIf="frcs._00109.choice === 'questionable'" [(ngModel)]="frcs._00109.comments" name="_00109"
+          type="text" placeholder="Comments" required>
+        </ion-input>
+      </div>
+
+
     </ion-list>
 
 
