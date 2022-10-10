@@ -29,7 +29,7 @@
           documentation exist for
           this task?
           Identify root cause(s)</ion-label>
-        <ion-textarea autofocus [(ngModel)]="frcs.fact1.root" name="root" required inputmode="text" auto-grow
+        <ion-textarea autofocus [(ngModel)]="frcs.fact1.root" name="root1" required inputmode="text" auto-grow
           placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
@@ -38,7 +38,7 @@
         <ion-label class="ion-text-wrap" position="stacked">Solution(s): Explain who will develop
           procedure, JLA, or SWP for this task (who
           writes, reviews, & approves, due date, etc.)</ion-label>
-        <ion-textarea [(ngModel)]="frcs.fact1.solution" name="solution" required inputmode="text" auto-grow
+        <ion-textarea [(ngModel)]="frcs.fact1.solution" name="solution1" required inputmode="text" auto-grow
           placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
@@ -55,7 +55,7 @@
           maintained and/or why isn’t there proper
           workplace design?
           Identify root cause(s).</ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact2.root" name="root2" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -65,7 +65,7 @@
           how workplace design will be made proper (who
           is responsible, due date, etc.).
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact2.solution" name="solution2" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
 
@@ -81,7 +81,7 @@
           communication occur consistently?
           Identify root cause(s).
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact3.root" name="root3"  auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -89,7 +89,7 @@
           face-to-face with person to do this task, as well as ALL
           tasks, according to procedures or acceptable practices.
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact3.solution" name="solution3" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
 
@@ -105,7 +105,7 @@
           to documentation or acceptable practices?
           Identify root cause(s).
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact4.root" name="root4"  auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -113,7 +113,7 @@
           task according to documentation or acceptable practices
           (who will show person, due date, etc.).
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact4.solution" name="solution4"  auto-grow placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
 
@@ -135,7 +135,7 @@
           <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or
             acceptable practice was not followed?
           </ion-label>
-          <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+          <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact5.root" name="root5" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
         </ion-item>
 
         <ion-item>
@@ -144,7 +144,7 @@
             continues to perform task this way just because
             he/she did it in past & no incident occurred.
           </ion-label>
-          <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+          <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact5.solution" name="solution5" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
         </ion-item>
       </div>
       <div *ngIf="frcs.fact5.choice === 'yes'">
@@ -156,7 +156,7 @@
           <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or
             acceptable practice was not followed?
           </ion-label>
-          <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+          <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact5.root" name="root5" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
         </ion-item>
 
         <ion-item>
@@ -165,7 +165,7 @@
             he/she continues to perform task this way.
 
           </ion-label>
-          <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+          <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact5.solution" name="solution5" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
         </ion-item>
       </div>
 
@@ -179,7 +179,7 @@
         <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable
           practice was not followed?
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact6.root" name="root6" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -188,7 +188,7 @@
           perform task this way just because he/she has an easier,
           faster, or “better” way to do task.
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact6.solution" name="solution6" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
 
@@ -202,7 +202,7 @@
         <ion-label class="ion-text-wrap" position="stacked">What part of the procedure or acceptable
           practice was not followed?
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact7.root" name="root7" auto-grow placeholder="Enter Root cause(s)"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -212,7 +212,7 @@
           stewardship, V&V solutions, LPO feedback sessions & monthly
           LPS stewardship sessions
         </ion-label>
-        <ion-textarea required inputmode="text" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
+        <ion-textarea required inputmode="text" [(ngModel)]="frcs.fact7.solution" name="solution7" auto-grow placeholder="Enter Solution(s)"></ion-textarea>
       </ion-item>
 
 

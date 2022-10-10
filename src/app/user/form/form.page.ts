@@ -112,6 +112,36 @@ export class FormPage implements OnInit {
     fb_sess_time: new Date().toISOString(),
   };
 
+  soldev = {
+    chkline1: '',
+    factor1: '',
+    solution1: '',
+    personResp1: '',
+    trgetCompDate1: '',
+    actCompDate1: '',
+    vvdate1: '',
+
+    chkline2: '',
+    factor2: '',
+    solution2: '',
+    personResp2: '',
+    trgetCompDate2: '',
+    actCompDate2: '',
+    vvdate2: '',
+
+    supQuaChk: '',
+    supTitle_comp: '',
+    supDate:'',
+
+    vv1: '',
+    vvjb1: '',
+    vvcomments1: '',
+
+    vv2: '',
+    vvjb2: '',
+    vvcomments2: '',
+  }
+
   frcs = {
     _00101: { choice: '', val: '', comments: '' },
     _00102: { choice: '', val: '', comments: '' },
@@ -122,7 +152,54 @@ export class FormPage implements OnInit {
     _00107: { choice: '', val: '', comments: '' },
     _00108: { choice: '', val: '', comments: '' },
     _00109: { choice: '', val: '', comments: '' },
-    frcs_form: [],
+    _00114: { choice: '', val: '', comments: '' },
+
+    _00201: { choice: '', val: '', comments: '' },
+    _00202: { choice: '', val: '', comments: '' },
+    _00203: { choice: '', val: '', comments: '' },
+    _00204: { choice: '', val: '', comments: '' },
+    _00205: { choice: '', val: '', comments: '' },
+    _00206: { choice: '', val: '', comments: '' },
+    _00215: { choice: '', val: '', comments: '' },
+
+    _00301: { choice: '', val: '', comments: '' },
+    _00306: { choice: '', val: '', comments: '' },
+    _00307: { choice: '', val: '', comments: '' },
+    _00308: { choice: '', val: '', comments: '' },
+    _00311: { choice: '', val: '', comments: '' },
+    _00312: { choice: '', val: '', comments: '' },
+    _00319: { choice: '', val: '', comments: '' },
+    _00320: { choice: '', val: '', comments: '' },
+    _00322: { choice: '', val: '', comments: '' },
+    _00323: { choice: '', val: '', comments: '' },
+    _00327: { choice: '', val: '', comments: '' },
+
+    _00401: { choice: '', val: '', comments: '' },
+    _00408: { choice: '', val: '', comments: '' },
+    _00409: { choice: '', val: '', comments: '' },
+    _00414: { choice: '', val: '', comments: '' },
+    _00420: { choice: '', val: '', comments: '' },
+    _00421: { choice: '', val: '', comments: '' },
+    _00426: { choice: '', val: '', comments: '' },
+    _00453: { choice: '', val: '', comments: '' },
+    _00454: { choice: '', val: '', comments: '' },
+
+
+    _00816: { choice: '', val: '', comments: '' },
+    _00456: { choice: '', val: '', comments: '' },
+    _01501: { choice: '', val: '', comments: '' },
+    _01502: { choice: '', val: '', comments: '' },
+    _01505: { choice: '', val: '', comments: '' },
+    _01506: { choice: '', val: '', comments: '' },
+    _01507: { choice: '', val: '', comments: '' },
+    _01556: { choice: '', val: '', comments: '' },
+    _01555: { choice: '', val: '', comments: '' },
+
+    _01701: { choice: '', val: '', comments: '' },
+    _01703: { choice: '', val: '', comments: '' },
+    _01707: { choice: '', val: '', comments: '' },
+   
+    frcs_form: []
   };
 
   constructor(
@@ -144,7 +221,8 @@ export class FormPage implements OnInit {
       this.data.addForm({user: this.particulars.obs_name, time: serverTimestamp(),
         parts: this.particulars,
         taskObs: this.taskObs,
-        frcs: this.frcs
+        frcs: this.frcs,
+        soldev: this.soldev
       }).then(e => {
           this.navCtrl.navigateRoot("/");
       }).catch(e => {
