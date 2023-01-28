@@ -1,10 +1,11 @@
 
 
 #download {
-    position: fixed;
+    position: absolute;
     right: 5px;
     top: 50%;
     transform: translate(-10%, -50%);
+    display: flex;
 }
 
 ion-card {
@@ -18,4 +19,17 @@ ion-card {
 #list-card {
     padding: 0 20px 0 20px;
     margin: auto;
+}
+
+ion-modal {
+    top: 20%;
+    height: 80%;
+  }
+
+ion-card-header {
+    padding-bottom: 10px !important;
+
+    ion-card-subtitle {
+        margin: 0;
+    }
 }

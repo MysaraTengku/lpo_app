@@ -2,13 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { PDFDict, PDFDocument, TextAlignment } from 'pdf-lib';
 import * as moment from 'moment';
+import { OverlayEventDetail } from '@ionic/core/components';
+
 declare var require: any;
 import {
   IonInfiniteScroll,
+  IonModal,
   LoadingController,
+  ModalController,
   ToastController,
 } from '@ionic/angular';
-import { async } from '@angular/core/testing';
+import { NavigationExtras, Router } from '@angular/router';
 
 const FileSaver = require('file-saver');
 
@@ -19,6 +23,14 @@ const FileSaver = require('file-saver');
 })
 export class ListPdfPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonModal) modal: IonModal;
+
+  filter = {
+    fromDate: '',
+    toDate: '',
+    review: '',
+    questionable: ''
+  }
 
   forms_length = 0
   forms = [];
@@ -26,7 +38,9 @@ export class ListPdfPage implements OnInit {
   constructor(
     private data: DataService,
     private toastCtrl: ToastController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public modalCtrl: ModalController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -42,11 +56,8 @@ export class ListPdfPage implements OnInit {
       console.log(size)
     })
 
-    
-   
   }
   loadData(event) {
-
     if (this.forms_length > 10) {
       this.data.getNext(this.lastVis).subscribe(next => {
         console.log(next.forms)
@@ -64,8 +75,21 @@ export class ListPdfPage implements OnInit {
       event.target.complete();
       event.target.disabled = true;
     }
-
   }
+
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      // this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
@@ -715,200 +739,200 @@ export class ListPdfPage implements OnInit {
 
       //number of times form
 
-      ppe_1c.setText(frcs._00101.choice == "correct" ? frcs._00101.val.toString() : "")
-      ppe_1q.setText(frcs._00101.choice == "questionable" ? frcs._00101.val.toString() : "")
+      ppe_1c.setText(frcs._00101.choice == "correct" && frcs._00101.val ? frcs._00101.val.toString() : "")
+      ppe_1q.setText(frcs._00101.choice == "questionable" ? "1" : "")
       ppe_1comm.setText(frcs._00101.choice == "questionable" ? frcs._00101.comments : "")
 
-      ppe_2c.setText(frcs._00102.choice == "correct" ? frcs._00102.val.toString() : "")
-      ppe_2q.setText(frcs._00102.choice == "questionable" ? frcs._00102.val.toString() : "")
+      ppe_2c.setText(frcs._00102.choice == "correct" && frcs._00102.val ? frcs._00102.val.toString() : "")
+      ppe_2q.setText(frcs._00102.choice == "questionable" ? "1" : "")
       ppe_2comm.setText(frcs._00102.choice == "questionable" ? frcs._00102.comments : "")
 
-      ppe_3c.setText(frcs._00103.choice == "correct" ? frcs._00103.val.toString() : "")
-      ppe_3q.setText(frcs._00103.choice == "questionable" ? frcs._00103.val.toString() : "")
+      ppe_3c.setText(frcs._00103.choice == "correct" && frcs._00103.val  ? frcs._00103.val.toString() : "")
+      ppe_3q.setText(frcs._00103.choice == "questionable" ? "1" : "")
       ppe_3comm.setText(frcs._00103.choice == "questionable" ? frcs._00103.comments : "")
 
-      ppe_4c.setText(frcs._00104.choice == "correct" ? frcs._00104.val.toString() : "")
-      ppe_4q.setText(frcs._00104.choice == "questionable" ? frcs._00104.val.toString() : "")
+      ppe_4c.setText(frcs._00104.choice == "correct" && frcs._00104.val ? frcs._00104.val.toString() : "")
+      ppe_4q.setText(frcs._00104.choice == "questionable" ? "1" : "")
       ppe_4comm.setText(frcs._00104.choice == "questionable" ? frcs._00104.comments : "")
 
-      ppe_5c.setText(frcs._00105.choice == "correct" ? frcs._00105.val.toString() : "")
-      ppe_5q.setText(frcs._00105.choice == "questionable" ? frcs._00105.val.toString() : "")
+      ppe_5c.setText(frcs._00105.choice == "correct" && frcs._00105.val  ? frcs._00105.val.toString() : "")
+      ppe_5q.setText(frcs._00105.choice == "questionable" ? "1" : "")
       ppe_5comm.setText(frcs._00105.choice == "questionable" ? frcs._00105.comments : "")
 
-      ppe_6c.setText(frcs._00106.choice == "correct" ? frcs._00106.val.toString() : "")
-      ppe_6q.setText(frcs._00106.choice == "questionable" ? frcs._00106.val.toString() : "")
+      ppe_6c.setText(frcs._00106.choice == "correct" && frcs._00106.val  ? frcs._00106.val.toString() : "")
+      ppe_6q.setText(frcs._00106.choice == "questionable" ? "1" : "")
       ppe_6comm.setText(frcs._00106.choice == "questionable" ? frcs._00106.comments : "")
 
-      ppe_7c.setText(frcs._00107.choice == "correct" ? frcs._00107.val.toString() : "")
-      ppe_7q.setText(frcs._00107.choice == "questionable" ? frcs._00107.val.toString() : "")
+      ppe_7c.setText(frcs._00107.choice == "correct" && frcs._00107.val  ? frcs._00107.val.toString() : "")
+      ppe_7q.setText(frcs._00107.choice == "questionable" ? "1" : "")
       ppe_7comm.setText(frcs._00107.choice == "questionable" ? frcs._00107.comments : "")
 
-      ppe_8c.setText(frcs._00108.choice == "correct" ? frcs._00108.val.toString() : "")
-      ppe_8q.setText(frcs._00108.choice == "questionable" ? frcs._00108.val.toString() : "")
+      ppe_8c.setText(frcs._00108.choice == "correct" && frcs._00108.val  ? frcs._00108.val.toString() : "")
+      ppe_8q.setText(frcs._00108.choice == "questionable" ? "1" : "")
       ppe_8comm.setText(frcs._00108.choice == "questionable" ? frcs._00108.comments : "")
 
-      ppe_9c.setText(frcs._00114.choice == "correct" ? frcs._00114.val.toString() : "")
-      ppe_9q.setText(frcs._00114.choice == "questionable" ? frcs._00114.val.toString() : "")
+      ppe_9c.setText(frcs._00114.choice == "correct" && frcs._00114.val  ? frcs._00114.val.toString() : "")
+      ppe_9q.setText(frcs._00114.choice == "questionable" ? "1" : "")
       ppe_9comm.setText(frcs._00114.choice == "questionable" ? frcs._00114.comments : "")
 
 
 
-      ppe_10c.setText(frcs._00201.choice == "correct" ? frcs._00201.val.toString() : "")
-      ppe_10q.setText(frcs._00201.choice == "questionable" ? frcs._00201.val.toString() : "")
+      ppe_10c.setText(frcs._00201.choice == "correct" && frcs._00201.val  ? frcs._00201.val.toString() : "")
+      ppe_10q.setText(frcs._00201.choice == "questionable" ? "1" : "")
       ppe_10comm.setText(frcs._00201.choice == "questionable" ? frcs._00201.comments : "")
 
-      ppe_11c.setText(frcs._00202.choice == "correct" ? frcs._00202.val.toString() : "")
-      ppe_11q.setText(frcs._00202.choice == "questionable" ? frcs._00202.val.toString() : "")
+      ppe_11c.setText(frcs._00202.choice == "correct" && frcs._00202.val  ? frcs._00202.val.toString() : "")
+      ppe_11q.setText(frcs._00202.choice == "questionable" ? "1" : "")
       ppe_11comm.setText(frcs._00202.choice == "questionable" ? frcs._00202.comments : "")
 
-      ppe_12c.setText(frcs._00203.choice == "correct" ? frcs._00203.val.toString() : "")
-      ppe_12q.setText(frcs._00203.choice == "questionable" ? frcs._00203.val.toString().toString() : "")
+      ppe_12c.setText(frcs._00203.choice == "correct" && frcs._00203.val  ? frcs._00203.val.toString() : "")
+      ppe_12q.setText(frcs._00203.choice == "questionable" ? "1" : "")
       ppe_12comm.setText(frcs._00203.choice == "questionable" ? frcs._00203.comments : "")
 
-      ppe_13c.setText(frcs._00204.choice == "correct" ? frcs._00204.val.toString() : "")
-      ppe_13q.setText(frcs._00204.choice == "questionable" ? frcs._00204.val.toString() : "")
+      ppe_13c.setText(frcs._00204.choice == "correct" && frcs._00204.val  ? frcs._00204.val.toString() : "")
+      ppe_13q.setText(frcs._00204.choice == "questionable" ? "1" : "")
       ppe_13comm.setText(frcs._00204.choice == "questionable" ? frcs._00204.comments : "")
 
-      ppe_14c.setText(frcs._00205.choice == "correct" ? frcs._00205.val.toString() : "")
-      ppe_14q.setText(frcs._00205.choice == "questionable" ? frcs._00205.val.toString() : "")
+      ppe_14c.setText(frcs._00205.choice == "correct" && frcs._00205.val  ? frcs._00205.val.toString() : "")
+      ppe_14q.setText(frcs._00205.choice == "questionable" ? "1" : "")
       ppe_14comm.setText(frcs._00205.choice == "questionable" ? frcs._00205.comments : "")
 
-      ppe_15c.setText(frcs._00206.choice == "correct" ? frcs._00206.val.toString() : "")
-      ppe_15q.setText(frcs._00206.choice == "questionable" ? frcs._00206.val.toString() : "")
+      ppe_15c.setText(frcs._00206.choice == "correct" && frcs._00206.val  ? frcs._00206.val.toString() : "")
+      ppe_15q.setText(frcs._00206.choice == "questionable" ? "1" : "")
       ppe_15comm.setText(frcs._00206.choice == "questionable" ? frcs._00206.comments : "")
 
-      ppe_16c.setText(frcs._00215.choice == "correct" ? frcs._00215.val.toString() : "")
-      ppe_16q.setText(frcs._00215.choice == "questionable" ? frcs._00215.val.toString() : "")
+      ppe_16c.setText(frcs._00215.choice == "correct" && frcs._00215.val  ? frcs._00215.val.toString() : "")
+      ppe_16q.setText(frcs._00215.choice == "questionable" ? "1" : "")
       ppe_16comm.setText(frcs._00215.choice == "questionable" ? frcs._00215.comments : "")
 
 
 
-      ppe_17c.setText(frcs._00301.choice == "correct" ? frcs._00301.val.toString() : "")
-      ppe_17q.setText(frcs._00301.choice == "questionable" ? frcs._00301.val.toString() : "")
+      ppe_17c.setText(frcs._00301.choice == "correct" && frcs._00301.val  ? frcs._00301.val.toString() : "")
+      ppe_17q.setText(frcs._00301.choice == "questionable" ? "1" : "")
       ppe_17comm.setText(frcs._00301.choice == "questionable" ? frcs._00301.comments : "")
 
-      ppe_18c.setText(frcs._00306.choice == "correct" ? frcs._00306.val.toString() : "")
-      ppe_18q.setText(frcs._00306.choice == "questionable" ? frcs._00306.val.toString() : "")
+      ppe_18c.setText(frcs._00306.choice == "correct" && frcs._00306.val  ? frcs._00306.val.toString() : "")
+      ppe_18q.setText(frcs._00306.choice == "questionable" ? "1" : "")
       ppe_18comm.setText(frcs._00306.choice == "questionable" ? frcs._00306.comments : "")
 
-      ppe_19c.setText(frcs._00307.choice == "correct" ? frcs._00307.val.toString() : "")
-      ppe_19q.setText(frcs._00307.choice == "questionable" ? frcs._00307.val.toString() : "")
+      ppe_19c.setText(frcs._00307.choice == "correct" && frcs._00307.val  ? frcs._00307.val.toString() : "")
+      ppe_19q.setText(frcs._00307.choice == "questionable" ? "1" : "")
       ppe_19comm.setText(frcs._00307.choice == "questionable" ? frcs._00307.comments : "")
 
-      ppe_20c.setText(frcs._00308.choice == "correct" ? frcs._00308.val.toString() : "")
-      ppe_20q.setText(frcs._00308.choice == "questionable" ? frcs._00308.val.toString() : "")
+      ppe_20c.setText(frcs._00308.choice == "correct" && frcs._00308.val  ? frcs._00308.val.toString() : "")
+      ppe_20q.setText(frcs._00308.choice == "questionable" ? "1" : "")
       ppe_20comm.setText(frcs._00308.choice == "questionable" ? frcs._00308.comments : "")
 
-      ppe_21c.setText(frcs._00311.choice == "correct" ? frcs._00311.val.toString() : "")
-      ppe_21q.setText(frcs._00311.choice == "questionable" ? frcs._00311.val.toString() : "")
+      ppe_21c.setText(frcs._00311.choice == "correct" && frcs._00311.val  ? frcs._00311.val.toString() : "")
+      ppe_21q.setText(frcs._00311.choice == "questionable" ? "1" : "")
       ppe_21comm.setText(frcs._00311.choice == "questionable" ? frcs._00311.comments : "")
 
-      ppe_22c.setText(frcs._00312.choice == "correct" ? frcs._00312.val.toString() : "")
-      ppe_22q.setText(frcs._00312.choice == "questionable" ? frcs._00312.val.toString() : "")
+      ppe_22c.setText(frcs._00312.choice == "correct" && frcs._00312.val  ? frcs._00312.val.toString() : "")
+      ppe_22q.setText(frcs._00312.choice == "questionable" ? "1" : "")
       ppe_22comm.setText(frcs._00312.choice == "questionable" ? frcs._00312.comments : "")
 
-      ppe_23c.setText(frcs._00319.choice == "correct" ? frcs._00319.val.toString().toString() : "")
-      ppe_23q.setText(frcs._00319.choice == "questionable" ? frcs._00319.val.toString() : "")
+      ppe_23c.setText(frcs._00319.choice == "correct" && frcs._00319.val  ? frcs._00319.val.toString() : "")
+      ppe_23q.setText(frcs._00319.choice == "questionable" ? "1" : "")
       ppe_23comm.setText(frcs._00319.choice == "questionable" ? frcs._00319.comments : "")
 
-      ppe_24c.setText(frcs._00320.choice == "correct" ? frcs._00320.val.toString() : "")
-      ppe_24q.setText(frcs._00320.choice == "questionable" ? frcs._00320.val.toString() : "")
+      ppe_24c.setText(frcs._00320.choice == "correct" && frcs._00320.val  ? frcs._00320.val.toString() : "")
+      ppe_24q.setText(frcs._00320.choice == "questionable" ? "1" : "")
       ppe_24comm.setText(frcs._00320.choice == "questionable" ? frcs._00320.comments : "")
 
-      ppe_25c.setText(frcs._00322.choice == "correct" ? frcs._00322.val.toString() : "")
-      ppe_25q.setText(frcs._00322.choice == "questionable" ? frcs._00322.val.toString() : "")
+      ppe_25c.setText(frcs._00322.choice == "correct" && frcs._00322.val  ? frcs._00322.val.toString() : "")
+      ppe_25q.setText(frcs._00322.choice == "questionable" ? "1" : "")
       ppe_25comm.setText(frcs._00322.choice == "questionable" ? frcs._00322.comments : "")
 
-      ppe_26c.setText(frcs._00323.choice == "correct" ? frcs._00323.val.toString() : "")
-      ppe_26q.setText(frcs._00323.choice == "questionable" ? frcs._00323.val.toString() : "")
+      ppe_26c.setText(frcs._00323.choice == "correct" && frcs._00323.val  ? frcs._00323.val.toString() : "")
+      ppe_26q.setText(frcs._00323.choice == "questionable" ? "1" : "")
       ppe_26comm.setText(frcs._00323.choice == "questionable" ? frcs._00323.comments : "")
 
-      ppe_27c.setText(frcs._00327.choice == "correct" ? frcs._00327.val.toString() : "")
-      ppe_27q.setText(frcs._00327.choice == "questionable" ? frcs._00327.val.toString() : "")
+      ppe_27c.setText(frcs._00327.choice == "correct" && frcs._00327.val  ? frcs._00327.val.toString() : "")
+      ppe_27q.setText(frcs._00327.choice == "questionable" ? "1" : "")
       ppe_27comm.setText(frcs._00327.choice == "questionable" ? frcs._00327.comments : "")
 
-      ppe_28c.setText(frcs._00401.choice == "correct" ? frcs._00401.val.toString() : "")
-      ppe_28q.setText(frcs._00401.choice == "questionable" ? frcs._00401.val.toString() : "")
+      ppe_28c.setText(frcs._00401.choice == "correct" && frcs._00401.val  ? frcs._00401.val.toString() : "")
+      ppe_28q.setText(frcs._00401.choice == "questionable" ? "1" : "")
       ppe_28comm.setText(frcs._00401.choice == "questionable" ? frcs._00401.comments : "")
 
-      ppe_29c.setText(frcs._00408.choice == "correct" ? frcs._00408.val.toString() : "")
-      ppe_29q.setText(frcs._00408.choice == "questionable" ? frcs._00408.val.toString() : "")
+      ppe_29c.setText(frcs._00408.choice == "correct" && frcs._00408.val  ? frcs._00408.val.toString() : "")
+      ppe_29q.setText(frcs._00408.choice == "questionable" ? "1" : "")
       ppe_29comm.setText(frcs._00408.choice == "questionable" ? frcs._00408.comments : "")
 
-      ppe_30c.setText(frcs._00409.choice == "correct" ? frcs._00409.val.toString() : "")
-      ppe_30q.setText(frcs._00409.choice == "questionable" ? frcs._00409.val.toString() : "")
+      ppe_30c.setText(frcs._00409.choice == "correct" && frcs._00409.val  ? frcs._00409.val.toString() : "")
+      ppe_30q.setText(frcs._00409.choice == "questionable" ? "1" : "")
       ppe_30comm.setText(frcs._00409.choice == "questionable" ? frcs._00409.comments : "")
 
-      ppe_31c.setText(frcs._00414.choice == "correct" ? frcs._00414.val.toString() : "")
-      ppe_31q.setText(frcs._00414.choice == "questionable" ? frcs._00414.val.toString() : "")
+      ppe_31c.setText(frcs._00414.choice == "correct" && frcs._00414.val  ? frcs._00414.val.toString() : "")
+      ppe_31q.setText(frcs._00414.choice == "questionable" ? "1" : "")
       ppe_31comm.setText(frcs._00414.choice == "questionable" ? frcs._00414.comments : "")
 
-      ppe_32c.setText(frcs._00420.choice == "correct" ? frcs._00420.val.toString() : "")
-      ppe_32q.setText(frcs._00420.choice == "questionable" ? frcs._00420.val.toString() : "")
+      ppe_32c.setText(frcs._00420.choice == "correct" && frcs._00420.val  ? frcs._00420.val.toString() : "")
+      ppe_32q.setText(frcs._00420.choice == "questionable" ? "1" : "")
       ppe_32comm.setText(frcs._00420.choice == "questionable" ? frcs._00420.comments : "")
 
-      ppe_33c.setText(frcs._00421.choice == "correct" ? frcs._00421.val.toString().toString() : "")
-      ppe_33q.setText(frcs._00421.choice == "questionable" ? frcs._00421.val.toString() : "")
+      ppe_33c.setText(frcs._00421.choice == "correct" && frcs._00421.val ? frcs._00421.val.toString() : "")
+      ppe_33q.setText(frcs._00421.choice == "questionable" ? "1" : "")
       ppe_33comm.setText(frcs._00421.choice == "questionable" ? frcs._00421.comments : "")
 
-      ppe_34c.setText(frcs._00426.choice == "correct" ? frcs._00426.val.toString() : "")
-      ppe_34q.setText(frcs._00426.choice == "questionable" ? frcs._00426.val.toString() : "")
+      ppe_34c.setText(frcs._00426.choice == "correct" && frcs._00426.val  ? frcs._00426.val.toString() : "")
+      ppe_34q.setText(frcs._00426.choice == "questionable" ? "1" : "")
       ppe_34comm.setText(frcs._00426.choice == "questionable" ? frcs._00426.comments : "")
 
-      ppe_35c.setText(frcs._00453.choice == "correct" ? frcs._00453.val.toString() : "")
-      ppe_35q.setText(frcs._00453.choice == "questionable" ? frcs._00453.val.toString() : "")
+      ppe_35c.setText(frcs._00453.choice == "correct" && frcs._00453.val  ? frcs._00453.val.toString() : "")
+      ppe_35q.setText(frcs._00453.choice == "questionable" ? "1" : "")
       ppe_35comm.setText(frcs._00453.choice == "questionable" ? frcs._00453.comments : "")
 
-      ppe_36c.setText(frcs._00454.choice == "correct" ? frcs._00454.val.toString() : "")
-      ppe_36q.setText(frcs._00454.choice == "questionable" ? frcs._00454.val.toString() : "")
+      ppe_36c.setText(frcs._00454.choice == "correct" && frcs._00454.val  ? frcs._00454.val.toString() : "")
+      ppe_36q.setText(frcs._00454.choice == "questionable" ? "1" : "")
       ppe_36comm.setText(frcs._00454.choice == "questionable" ? frcs._00454.comments : "")
 
-      ppe_37c.setText(frcs._00816.choice == "correct" ? frcs._00816.val.toString() : "")
-      ppe_37q.setText(frcs._00816.choice == "questionable" ? frcs._00816.val.toString() : "")
+      ppe_37c.setText(frcs._00816.choice == "correct" && frcs._00816.val  ? frcs._00816.val.toString() : "")
+      ppe_37q.setText(frcs._00816.choice == "questionable" ? "1" : "")
       ppe_37comm.setText(frcs._00816.choice == "questionable" ? frcs._00816.comments : "")
 
-      ppe_38c.setText(frcs._00456.choice == "correct" ? frcs._00456.val.toString() : "")
-      ppe_38q.setText(frcs._00456.choice == "questionable" ? frcs._00456.val.toString() : "")
+      ppe_38c.setText(frcs._00456.choice == "correct" && frcs._00456.val  ? frcs._00456.val.toString() : "")
+      ppe_38q.setText(frcs._00456.choice == "questionable" ? "1" : "")
       ppe_38comm.setText(frcs._00456.choice == "questionable" ? frcs._00456.comments : "")
 
-      ppe_39c.setText(frcs._01501.choice == "correct" ? frcs._01501.val.toString() : "")
-      ppe_39q.setText(frcs._01501.choice == "questionable" ? frcs._01501.val.toString() : "")
+      ppe_39c.setText(frcs._01501.choice == "correct" && frcs._01501.val  ? frcs._01501.val.toString() : "")
+      ppe_39q.setText(frcs._01501.choice == "questionable" ? "1" : "")
       ppe_39comm.setText(frcs._01501.choice == "questionable" ? frcs._01501.comments : "")
 
-      ppe_40c.setText(frcs._01502.choice == "correct" ? frcs._01502.val.toString() : "")
-      ppe_40q.setText(frcs._01502.choice == "questionable" ? frcs._01502.val.toString() : "")
+      ppe_40c.setText(frcs._01502.choice == "correct" && frcs._01502.val  ? frcs._01502.val.toString() : "")
+      ppe_40q.setText(frcs._01502.choice == "questionable" ? "1" : "")
       ppe_40comm.setText(frcs._01502.choice == "questionable" ? frcs._01502.comments : "")
 
-      ppe_41c.setText(frcs._01505.choice == "correct" ? frcs._01505.val.toString() : "")
-      ppe_41q.setText(frcs._01505.choice == "questionable" ? frcs._01505.val.toString() : "")
+      ppe_41c.setText(frcs._01505.choice == "correct" && frcs._01505.val  ? frcs._01505.val.toString() : "")
+      ppe_41q.setText(frcs._01505.choice == "questionable" ? "1" : "")
       ppe_41comm.setText(frcs._01505.choice == "questionable" ? frcs._01505.comments : "")
 
-      ppe_42c.setText(frcs._01506.choice == "correct" ? frcs._01506.val.toString() : "")
-      ppe_42q.setText(frcs._01506.choice == "questionable" ? frcs._01506.val.toString() : "")
+      ppe_42c.setText(frcs._01506.choice == "correct" && frcs._01506.val  ? frcs._01506.val.toString() : "")
+      ppe_42q.setText(frcs._01506.choice == "questionable" ? "1" : "")
       ppe_42comm.setText(frcs._01506.choice == "questionable" ? frcs._01506.comments : "")
 
-      ppe_43c.setText(frcs._01507.choice == "correct" ? frcs._01507.val.toString() : "")
-      ppe_43q.setText(frcs._01507.choice == "questionable" ? frcs._01507.val.toString() : "")
+      ppe_43c.setText(frcs._01507.choice == "correct" && frcs._01507.val  ? frcs._01507.val.toString() : "")
+      ppe_43q.setText(frcs._01507.choice == "questionable"  ? "1" : "")
       ppe_43comm.setText(frcs._01507.choice == "questionable" ? frcs._01507.comments : "")
 
-      ppe_44c.setText(frcs._01556.choice == "correct" ? frcs._01556.val.toString() : "")
-      ppe_44q.setText(frcs._01556.choice == "questionable" ? frcs._01556.val.toString() : "")
+      ppe_44c.setText(frcs._01556.choice == "correct" && frcs._01556.val  ? frcs._01556.val.toString() : "")
+      ppe_44q.setText(frcs._01556.choice == "questionable" ? "1" : "")
       ppe_44comm.setText(frcs._01556.choice == "questionable" ? frcs._01556.comments : "")
 
-      ppe_45c.setText(frcs._01555.choice == "correct" ? frcs._01555.val.toString() : "")
-      ppe_45q.setText(frcs._01555.choice == "questionable" ? frcs._01555.val.toString() : "")
+      ppe_45c.setText(frcs._01555.choice == "correct" && frcs._01555.val  ? frcs._01555.val.toString() : "")
+      ppe_45q.setText(frcs._01555.choice == "questionable" ? "1" : "")
       ppe_45comm.setText(frcs._01555.choice == "questionable" ? frcs._01555.comments : "")
 
-      ppe_46c.setText(frcs._01701.choice == "correct" ? frcs._01701.val.toString() : "")
-      ppe_46q.setText(frcs._01701.choice == "questionable" ? frcs._01701.val.toString() : "")
+      ppe_46c.setText(frcs._01701.choice == "correct" && frcs._01701.val  ? frcs._01701.val.toString() : "")
+      ppe_46q.setText(frcs._01701.choice == "questionable" ? "1" : "")
       ppe_46comm.setText(frcs._01701.choice == "questionable" ? frcs._01701.comments : "")
 
-      ppe_47c.setText(frcs._01703.choice == "correct" ? frcs._01703.val.toString() : "")
-      ppe_47q.setText(frcs._01703.choice == "questionable" ? frcs._01703.val.toString() : "")
+      ppe_47c.setText(frcs._01703.choice == "correct" && frcs._01703.val  ? frcs._01703.val.toString() : "")
+      ppe_47q.setText(frcs._01703.choice == "questionable" ? "1" : "")
       ppe_47comm.setText(frcs._01703.choice == "questionable" ? frcs._01703.comments : "")
 
-      ppe_48c.setText(frcs._01707.choice == "correct" ? frcs._01707.val.toString() : "")
-      ppe_48q.setText(frcs._01707.choice == "questionable" ? frcs._01707.val.toString() : "")
+      ppe_48c.setText(frcs._01707.choice == "correct" && frcs._01707.val  ? frcs._01707.val.toString() : "")
+      ppe_48q.setText(frcs._01707.choice == "questionable" ? "1" : "")
       ppe_48comm.setText(frcs._01707.choice == "questionable" ? frcs._01707.comments : "")
 
       
@@ -1034,4 +1058,23 @@ export class ListPdfPage implements OnInit {
     });
     toast.present();
   }
+
+
+  async filterOpen() {
+
+
+
+  }
+
+
+  goToFormAsAdmin() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        admin: true
+      }
+    };
+    this.router.navigate(['form'], navigationExtras)
+  }
+
+
 }

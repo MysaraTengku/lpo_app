@@ -4,6 +4,11 @@
       <ion-back-button defaultHref="/home" text=""></ion-back-button>
     </ion-buttons>
     <ion-title>User Submitted</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button id="open-modal" (click)="filter()">
+        <ion-icon slot="icon-only" name="filter"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,18 +24,94 @@
         <!-- <ion-card-subtitle>Document: </ion-card-subtitle> -->
       </ion-card-header>
       
-      <ion-card-content style="font-size: 12px;">
-        Date submitted: {{form.time.seconds*1000 | date: 'd MMM YYYY, HH:mm'}}
+      <ion-card-content>
+        <p  style="font-size: 12px; ">Questionable:</p>
+        <p  style="font-size: 12px;">Date submitted: {{form.time.seconds*1000 | date: 'd MMM YYYY, HH:mm'}}</p>
+        <p  style="font-size: 12px;">Last Reviewed: -</p>
       </ion-card-content>
 
-      <ion-button (click)="downloadForm(form)" id="download" fill="clear">
-        <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
-    </ion-button>
+
+      <div id="download">
+        <ion-button (click)="goToFormAsAdmin()" fill="clear">
+          <ion-icon  style="padding-bottom: 7px;" slot="icon-only" name="create-outline" ></ion-icon>
+        </ion-button>
+  
+        <ion-button (click)="downloadForm(form)"  fill="clear">
+          <ion-icon slot="icon-only" name="cloud-download"></ion-icon>
+      </ion-button>
+
+      </div>
     </ion-card>
 
   </div>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
+
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header  mode="ios">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Filter</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content >
+
+        <!-- CONTENT -->
+        <ion-list mode="ios">
+          <ion-item>
+            <ion-label position="stacked">Questionable document</ion-label>
+            <ion-select placeholder="Select status" value="" [(ngModel)]="filter.region">
+              <ion-select-option value="">Show All</ion-select-option>
+              <ion-select-option value="negative">No</ion-select-option>
+              <ion-select-option value="positive">Yes</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item >
+            <ion-label position="stacked">From:</ion-label>
+            <ion-datetime-button datetime="dateFrom"></ion-datetime-button>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">To:</ion-label>
+            <ion-datetime-button datetime="dateTo"></ion-datetime-button>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Reviewed</ion-label>
+            <ion-select placeholder="Select status" value="">
+              <ion-select-option value="">All</ion-select-option>
+              <ion-select-option value="reviewed">Reviewed</ion-select-option>
+              <ion-select-option value="pending">Pending</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <ion-button expand="block">
+          Apply Filter
+        </ion-button>
+      </ion-content>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime [(ngModel)]="filter.dateTo" name="dateTo" id="dateTo" presentation="date"
+            [showDefaultButtons]="true">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime [(ngModel)]="filter.dateFrom" name="dateFrom" id="dateFrom" presentation="date"
+            [showDefaultButtons]="true">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ng-template>
+  </ion-modal>
+
 
 </ion-content>

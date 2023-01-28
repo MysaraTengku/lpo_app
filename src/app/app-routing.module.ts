@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,13 +11,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
-    path: 'form',
-    loadChildren: () => import('./user/form/form.module').then( m => m.FormPageModule)
   },
   {
-    path: 'downloadform',
-    loadChildren: () => import('./user/downloadform/downloadform.module').then( m => m.DownloadformPageModule)
+    path: 'form',
+    loadChildren: () => import('./user/form/form.module').then( m => m.FormPageModule)
   },
   {
     path: 'list-pdf',

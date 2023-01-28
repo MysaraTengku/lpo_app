@@ -27,14 +27,12 @@
         </ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">3. Observation Date <span id="class-check"> (automatically set to current
-            date)</span></ion-label>
+        <ion-label position="stacked">3. Observation Date <span id="class-check"> (set automatically)</span></ion-label>
         <ion-datetime-button datetime="date"></ion-datetime-button>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">4. Observation Time <span id="class-check"> (automatically set to current
-            time)</span></ion-label>
+        <ion-label position="stacked">4. Observation Time <span id="class-check"> (set automatically)</span></ion-label>
         <ion-datetime-button datetime="time"></ion-datetime-button>
 
       </ion-item>
@@ -81,85 +79,15 @@
       </ion-item>
 
 
-      <ion-item>
-        <ion-label position="stacked">Region</ion-label>
-        <ion-select required interface="popover" [(ngModel)]="particulars.region" name="region"
-          placeholder="Select Region">
-          <ion-select-option value="africa">Africa</ion-select-option>
-          <ion-select-option value="americasSouth">Americas South</ion-select-option>
-          <ion-select-option value="asia">Asia</ion-select-option>
-          <ion-select-option value="canada">Canada</ion-select-option>
-          <ion-select-option value="europe">Europe</ion-select-option>
-          <ion-select-option value="middleEast">Middle East</ion-select-option>
-          <ion-select-option value="unitedStates">United States</ion-select-option>
-
-        </ion-select>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label position="stacked">Responsible Department/Division</ion-label>
-        <ion-input [(ngModel)]="particulars.respDeptDiv" name="respDeptDiv" placeholder="e.g ?" required></ion-input>
-      </ion-item>
-      <!-- Property Solutions -->
-      <ion-item lines="none">
-        <ion-label style="font-size: 14px;">Property Solutions<span id="class-check"> (please check one)</span>
-        </ion-label>
-      </ion-item>
-      <ion-radio-group [(ngModel)]="particulars.propSol" name="propSol">
-        <ion-item *ngFor="let prop of propSol">
-          <ion-label style="font-size: 12px">{{prop}}</ion-label>
-          <ion-radio slot="start" [value]="prop"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-      <!-- Environmental Solutions -->
-      <ion-item lines="none">
-        <ion-label style="font-size: 14px;">Environmental Solutions<span id="class-check"> (please check one)</span>
-        </ion-label>
-      </ion-item>
-      <ion-radio-group [(ngModel)]="particulars.envSol" name="envSol">
-        <ion-item *ngFor="let prop of envSol">
-          <ion-label style="font-size: 12px">{{prop}}</ion-label>
-          <ion-radio slot="start" [value]="prop"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
-
-      <!-- Environmental Country -->
-      <ion-item>
-        <ion-label position="stacked">Environmental Country</ion-label>
-        <ion-select mode="md" required [(ngModel)]="particulars.envCountry" name="envCountry"
-          placeholder="Select Env Country" [multiple]="true">
-          <ion-select-option *ngFor="let prop of envCountry" [value]="prop">{{prop}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <!-- E&PS -->
-      <ion-item lines="none">
-        <ion-label style="font-size: 14px;">E&PS<span id="class-check"> (please check one)</span>
-        </ion-label>
-      </ion-item>
-      <ion-radio-group [(ngModel)]="particulars.eps" name="eps">
-        <ion-item *ngFor="let prop of eps">
-          <ion-label style="font-size: 12px">{{prop}}</ion-label>
-          <ion-radio slot="start" [value]="prop"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-
       <!-- END OF FORM 1 -->
       <span *ngIf="!myForm.form.valid" id="fill-up">Please fill up all the fields</span>
     </ion-list>
 
     <div id="b-bottom">
       <!-- [disabled]="!myForm.form.valid" -->
-      <ion-button mode="ios" type="submit" [disabled]="!myForm.form.valid"  expand="block" fill="outline">Next
+      <ion-button mode="ios" type="submit" [disabled]="!myForm.form.valid" expand="block" fill="outline">Next
       </ion-button>
-
-
     </div>
-
-
 
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
@@ -176,14 +104,81 @@
         </ion-datetime>
       </ng-template>
     </ion-modal>
-
-
   </form>
 
 
   <!-- Second Form -->
   <form *ngIf="slide === 2" (ngSubmit)="logForm('next')" #myForm1="ngForm">
     <ion-list mode="ios">
+      
+      <!-- <ion-item>
+        <ion-label position="stacked">Region</ion-label>
+        <ion-select required interface="popover" [(ngModel)]="particulars.region" name="region"
+          placeholder="Select Region">
+          <ion-select-option value="africa">Africa</ion-select-option>
+          <ion-select-option value="americasSouth">Americas South</ion-select-option>
+          <ion-select-option value="asia">Asia</ion-select-option>
+          <ion-select-option value="canada">Canada</ion-select-option>
+          <ion-select-option value="europe">Europe</ion-select-option>
+          <ion-select-option value="middleEast">Middle East</ion-select-option>
+          <ion-select-option value="unitedStates">United States</ion-select-option>
+
+        </ion-select>
+      </ion-item> -->
+
+
+      <!-- <ion-item>
+        <ion-label position="stacked">Responsible Department/Division</ion-label>
+        <ion-input [(ngModel)]="particulars.respDeptDiv" name="respDeptDiv" placeholder="e.g ?" required></ion-input>
+      </ion-item> -->
+      <!-- Property Solutions -->
+      <!-- <ion-item lines="none">
+        <ion-label style="font-size: 14px;">Property Solutions<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.propSol" name="propSol">
+        <ion-item *ngFor="let prop of propSol">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group> -->
+
+      <!-- Environmental Solutions -->
+      <!-- <ion-item lines="none">
+        <ion-label style="font-size: 14px;">Environmental Solutions<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.envSol" name="envSol">
+        <ion-item *ngFor="let prop of envSol">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group> -->
+
+
+      <!-- Environmental Country -->
+      <!-- <ion-item>
+        <ion-label position="stacked">Environmental Country</ion-label>
+        <ion-select mode="md" required [(ngModel)]="particulars.envCountry" name="envCountry"
+          placeholder="Select Env Country" [multiple]="true">
+          <ion-select-option *ngFor="let prop of envCountry" [value]="prop">{{prop}}</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+
+      <!-- E&PS -->
+      <!-- <ion-item lines="none">
+        <ion-label style="font-size: 14px;">E&PS<span id="class-check"> (please check one)</span>
+        </ion-label>
+      </ion-item>
+      <ion-radio-group [(ngModel)]="particulars.eps" name="eps">
+        <ion-item *ngFor="let prop of eps">
+          <ion-label style="font-size: 12px">{{prop}}</ion-label>
+          <ion-radio slot="start" [value]="prop"></ion-radio>
+        </ion-item>
+      </ion-radio-group> -->
+
+
+
       <ion-list-header>Task Observed </ion-list-header>
       <span id="brief-header"> (primary job associated with activity observed, avoid
         “Other” if possible)</span>
@@ -232,7 +227,7 @@
 
 
       <!-- Feedback Session -->
-      <ion-list-header>Feedback Session</ion-list-header>
+      <!-- <ion-list-header>Feedback Session</ion-list-header>
       <ion-item>
         <ion-label position="stacked">1. Feedback Session Conducted By</ion-label>
         <ion-input [(ngModel)]="taskObs.fb_sess_cond" name="fb_sess_cond" type="text" placeholder="" required>
@@ -253,7 +248,7 @@
             time)</span></ion-label>
         <ion-datetime-button datetime="time1"></ion-datetime-button>
 
-      </ion-item>
+      </ion-item> -->
 
     </ion-list>
 
@@ -278,7 +273,8 @@
     <div id="double-button">
       <ion-button mode="ios" (click)="logForm('previous')" expand="block" fill="outline">Back</ion-button>
 
-      <ion-button mode="ios" type="submit" [disabled]="!myForm1.form.valid" expand="block" fill="outline">Next</ion-button>
+      <ion-button mode="ios" type="submit" [disabled]="!myForm1.form.valid" expand="block" fill="outline">Next
+      </ion-button>
       <!-- [disabled]="!myForm1.form.valid" -->
       <!-- <ion-button mode="ios" type="submit"  expand="block">Submit</ion-button> -->
 
@@ -308,7 +304,7 @@
       <ion-item>
         <ion-label position="stacked">1. (00101) Hearing protection (e.g., ear plugs, ear muffs) </ion-label>
         <ion-select [(ngModel)]="frcs._00101.choice" name="_00101" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -317,23 +313,25 @@
       </ion-item>
       <div id="questionable" *ngIf="frcs._00101.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00101.choice" [(ngModel)]="frcs._00101.val" name="_00101" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00101.choice === 'correct'" [(ngModel)]="frcs._00101.val" name="_00101" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00101.choice === 'questionable'" [(ngModel)]="frcs._00101.comments" name="_00101"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00101.choice === 'questionable'"
             (click)="frcsModal('_00101', '1. (00101) Hearing protection (e.g., ear plugs, ear muffs) ')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00101.choice === 'questionable'" [(ngModel)]="frcs._00101.comments" name="_00101"
-          type="text" placeholder="Comments" required>
-        </ion-input>
+
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">2. (00102) Head protection (e.g., hard hat)</ion-label>
         <ion-select [(ngModel)]="frcs._00102.choice" name="_00102" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -341,23 +339,26 @@
 
       <div id="questionable" *ngIf="frcs._00102.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00102.choice" [(ngModel)]="frcs._00102.val" name="_00102" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00102.choice === 'correct'" [(ngModel)]="frcs._00102.val" name="_00102" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00102.choice === 'questionable'" [(ngModel)]="frcs._00102.comments" name="_00102"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00102.choice === 'questionable'"
             (click)="frcsModal('_00102', '2. (00102) Head protection (e.g., hard hat)')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00102.choice === 'questionable'" [(ngModel)]="frcs._00102.comments" name="_00102"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
 
       <ion-item>
         <ion-label position="stacked">3. (00103) Eye/face protection (e.g., safety glasses, face shield)</ion-label>
+
         <ion-select [(ngModel)]="frcs._00103.choice" name="_00103" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -365,23 +366,23 @@
 
       <div id="questionable" *ngIf="frcs._00103.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00103.choice" [(ngModel)]="frcs._00103.val" name="_00103" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00103.choice === 'correct'" [(ngModel)]="frcs._00103.val" name="_00103" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00103.choice === 'questionable'" [(ngModel)]="frcs._00103.comments" name="_00103"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00103.choice === 'questionable'"
             (click)="frcsModal('_00103', '3. (00103) Eye/face protection (e.g., safety glasses, face shield)')">Fill up
             FRCS</ion-button>
         </div>
-        <ion-input *ngIf="frcs._00103.choice === 'questionable'" [(ngModel)]="frcs._00103.comments" name="_00103"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">4. (00104) Hand protection</ion-label>
         <ion-select [(ngModel)]="frcs._00104.choice" name="_00104" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -389,22 +390,24 @@
 
       <div id="questionable" *ngIf="frcs._00104.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00104.choice" [(ngModel)]="frcs._00104.val" name="_00104" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00104.choice === 'correct'" [(ngModel)]="frcs._00104.val" name="_00104" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00104.choice === 'questionable'" [(ngModel)]="frcs._00104.comments" name="_00104"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00104.choice === 'questionable'"
             (click)="frcsModal('_00104', '4. (00104) Hand protection')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00104.choice === 'questionable'" [(ngModel)]="frcs._00104.comments" name="_00104"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">5. (00105) Foot protection</ion-label>
         <ion-select [(ngModel)]="frcs._00105.choice" name="_00105" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -412,22 +415,24 @@
 
       <div id="questionable" *ngIf="frcs._00105.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00105.choice" [(ngModel)]="frcs._00105.val" name="_00105" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00105.choice === 'correct'" [(ngModel)]="frcs._00105.val" name="_00105" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00105.choice === 'questionable'" [(ngModel)]="frcs._00105.comments" name="_00105"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00105.choice === 'questionable'"
             (click)="frcsModal('_00105', '5. (00105) Foot protection')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00105.choice === 'questionable'" [(ngModel)]="frcs._00105.comments" name="_00105"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">6. (00106) Protective clothing</ion-label>
         <ion-select [(ngModel)]="frcs._00106.choice" name="_00106" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -435,22 +440,24 @@
 
       <div id="questionable" *ngIf="frcs._00106.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00106.choice" [(ngModel)]="frcs._00106.val" name="_00106" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00106.choice === 'correct'" [(ngModel)]="frcs._00106.val" name="_00106" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00106.choice === 'questionable'" [(ngModel)]="frcs._00106.comments" name="_00106"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00106.choice === 'questionable'"
             (click)="frcsModal('_00106', '6. (00106) Protective clothing')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00106.choice === 'questionable'" [(ngModel)]="frcs._00106.comments" name="_00106"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">7. (00107) Respiratory protection</ion-label>
         <ion-select [(ngModel)]="frcs._00107.choice" name="_00107" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -458,21 +465,23 @@
 
       <div id="questionable" *ngIf="frcs._00107.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00107.choice" [(ngModel)]="frcs._00107.val" name="_00107" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00107.choice === 'correct'" [(ngModel)]="frcs._00107.val" name="_00107" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00107.choice === 'questionable'" [(ngModel)]="frcs._00107.comments" name="_00107"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00107.choice === 'questionable'"
             (click)="frcsModal('_00107', '7. (00107) Respiratory protection')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00107.choice === 'questionable'" [(ngModel)]="frcs._00107.comments" name="_00107"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
       <ion-item>
         <ion-label position="stacked">8. (00108) Fall protection (e.g., full body harness/lanyard/lifeline)</ion-label>
         <ion-select [(ngModel)]="frcs._00108.choice" name="_00108" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -480,22 +489,22 @@
 
       <div id="questionable" *ngIf="frcs._00108.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00108.choice" [(ngModel)]="frcs._00108.val" name="_00108" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00108.choice === 'correct'" [(ngModel)]="frcs._00108.val" name="_00108" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00108.choice === 'questionable'" [(ngModel)]="frcs._00108.comments" name="_00108"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00108.choice === 'questionable'"
             (click)="frcsModal('_00108', '8. (00108) Fall protection (e.g., full body harness/lanyard/lifeline)')">Fill
             up FRCS</ion-button>
         </div>
-        <ion-input *ngIf="frcs._00108.choice === 'questionable'" [(ngModel)]="frcs._00108.comments" name="_00108"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
       <ion-item>
         <ion-label position="stacked">9. (00114) Other; Specify</ion-label>
         <ion-select [(ngModel)]="frcs._00114.choice" name="_00114" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
@@ -503,18 +512,18 @@
 
       <div id="questionable" *ngIf="frcs._00114.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00114.choice" [(ngModel)]="frcs._00114.val" name="_00114" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00114.choice === 'correct'" [(ngModel)]="frcs._00114.val" name="_00114" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00114.choice === 'questionable'" [(ngModel)]="frcs._00114.comments" name="_00114"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00114.choice === 'questionable'"
             (click)="frcsModal('_00114', '9. (00114) Other; Specify')">Fill up FRCS</ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00114.choice === 'questionable'" [(ngModel)]="frcs._00114.comments" name="_00114"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
-
-
     </ion-list>
 
 
@@ -535,161 +544,166 @@
       <ion-item>
         <ion-label position="stacked">10. (00201) Correct body use and positioning</ion-label>
         <ion-select [(ngModel)]="frcs._00201.choice" name="_00201" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00201.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00201.choice" [(ngModel)]="frcs._00201.val" name="_00201" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00201.choice === 'correct'" [(ngModel)]="frcs._00201.val" name="_00201" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+
+          <ion-input *ngIf="frcs._00201.choice === 'questionable'" [(ngModel)]="frcs._00201.comments" name="_00201"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00201.choice === 'questionable'"
             (click)="frcsModal('_00201', '10. (00201) Correct body use and positioning')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00201.choice === 'questionable'" [(ngModel)]="frcs._00201.comments" name="_00201"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">11. (00202) Line of fire - correct positioning</ion-label>
         <ion-select [(ngModel)]="frcs._00202.choice" name="_00202" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00202.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00202.choice" [(ngModel)]="frcs._00202.val" name="_00202" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00202.choice === 'correct'" [(ngModel)]="frcs._00202.val" name="_00202" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00202.choice === 'questionable'" [(ngModel)]="frcs._00202.comments" name="_00201"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00202.choice === 'questionable'"
             (click)="frcsModal('_00202', '11. (00202) Line of fire - correct positioning')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00202.choice === 'questionable'" [(ngModel)]="frcs._00202.comments" name="_00201"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">12. (00203) Pinching/scraping point - sharp objects</ion-label>
         <ion-select [(ngModel)]="frcs._00203.choice" name="_00203" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00203.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00203.choice" [(ngModel)]="frcs._00203.val" name="_00203" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00203.choice === 'correct'" [(ngModel)]="frcs._00203.val" name="_00203" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00203.choice === 'questionable'" [(ngModel)]="frcs._00203.comments" name="_00203"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00203.choice === 'questionable'"
             (click)="frcsModal('_00203', '12. (00203) Pinching/scraping point - sharp objects')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00203.choice === 'questionable'" [(ngModel)]="frcs._00203.comments" name="_00203"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">13. (00204) Ascending/descending (e.g., ladder, stool)</ion-label>
         <ion-select [(ngModel)]="frcs._00204.choice" name="_00204" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00204.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00204.choice" [(ngModel)]="frcs._00204.val" name="_00204" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00204.choice === 'correct'" [(ngModel)]="frcs._00204.val" name="_00204" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00204.choice === 'questionable'" [(ngModel)]="frcs._00204.comments" name="_00204"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00204.choice === 'questionable'"
             (click)="frcsModal('_00204', '13. (00204) Ascending/descending (e.g., ladder, stool)')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00204.choice === 'questionable'" [(ngModel)]="frcs._00204.comments" name="_00204"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">14. (00205) Walking</ion-label>
         <ion-select [(ngModel)]="frcs._00205.choice" name="_00205" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00205.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00205.choice" [(ngModel)]="frcs._00205.val" name="_00205" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00205.choice === 'correct'" [(ngModel)]="frcs._00205.val" name="_00205" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00205.choice === 'questionable'" [(ngModel)]="frcs._00205.comments" name="_00205"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00205.choice === 'questionable'"
             (click)="frcsModal('_00205', '14. (00205) Walking')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00205.choice === 'questionable'" [(ngModel)]="frcs._00205.comments" name="_00205"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">15. (00206) Excessive effort/overexertion</ion-label>
         <ion-select [(ngModel)]="frcs._00206.choice" name="_00206" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00206.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00206.choice" [(ngModel)]="frcs._00206.val" name="_00206" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00206.choice === 'correct'" [(ngModel)]="frcs._00206.val" name="_00206" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00206.choice === 'questionable'" [(ngModel)]="frcs._00206.comments" name="_00206"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00206.choice === 'questionable'"
             (click)="frcsModal('_00206', '5. (00206) Excessive effort/overexertion')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00206.choice === 'questionable'" [(ngModel)]="frcs._00206.comments" name="_00206"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">16. (00215) Other; Specify:</ion-label>
         <ion-select [(ngModel)]="frcs._00215.choice" name="_00215" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00215.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00215.choice" [(ngModel)]="frcs._00215.val" name="_00215" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00215.choice === 'correct'" [(ngModel)]="frcs._00215.val" name="_00215" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00215.choice === 'questionable'" [(ngModel)]="frcs._00215.comments" name="_00215"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00215.choice === 'questionable'"
             (click)="frcsModal('_00215', '16. (00215) Other; Specify:')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00215.choice === 'questionable'" [(ngModel)]="frcs._00215.comments" name="_00215"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
@@ -707,258 +721,261 @@
   <form *ngIf="slide === 5" (ngSubmit)="logForm('next')" #myForm4="ngForm">
     <ion-list mode="ios">
       <ion-list-header>WORK ENVIRONMENT</ion-list-header>
-
-
       <ion-item>
         <ion-label position="stacked">17. (00301) Work/walk surface free of obstructions</ion-label>
         <ion-select [(ngModel)]="frcs._00301.choice" name="_00301" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00301.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00301.choice" [(ngModel)]="frcs._00301.val" name="_00301" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00301.choice === 'correct'" [(ngModel)]="frcs._00301.val" name="_00301" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00301.choice === 'questionable'" [(ngModel)]="frcs._00301.comments" name="_00301"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00301.choice === 'questionable'"
             (click)="frcsModal('_00301', '17. (00301) Work/walk surface free of obstructions')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00301.choice === 'questionable'" [(ngModel)]="frcs._00301.comments" name="_00301"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">18. (00306) Housekeeping/storage</ion-label>
         <ion-select [(ngModel)]="frcs._00306.choice" name="_00306" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00306.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00306.choice" [(ngModel)]="frcs._00306.val" name="_00306" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00306.choice === 'correct'" [(ngModel)]="frcs._00306.val" name="_00306" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00306.choice === 'questionable'" [(ngModel)]="frcs._00306.comments" name="_00306"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00306.choice === 'questionable'"
             (click)="frcsModal('_00306', '18. (00306) Housekeeping/storage')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00306.choice === 'questionable'" [(ngModel)]="frcs._00306.comments" name="_00306"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">19. (00307) Warning devices (e.g., barricades, cones, barriers)</ion-label>
         <ion-select [(ngModel)]="frcs._00307.choice" name="_00307" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00307.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00307.choice" [(ngModel)]="frcs._00307.val" name="_00307" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00307.choice === 'correct'" [(ngModel)]="frcs._00307.val" name="_00307" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00307.choice === 'questionable'" [(ngModel)]="frcs._00307.comments" name="_00307"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00307.choice === 'questionable'"
             (click)="frcsModal('_00307', '18. (00307) Housekeeping/storage')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00307.choice === 'questionable'" [(ngModel)]="frcs._00307.comments" name="_00307"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">20. (00308) Fire extinguisher/fire sprinkler</ion-label>
         <ion-select [(ngModel)]="frcs._00308.choice" name="_00308" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00308.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00308.choice" [(ngModel)]="frcs._00308.val" name="_00308" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00308.choice === 'correct'" [(ngModel)]="frcs._00308.val" name="_00308" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00308.choice === 'questionable'" [(ngModel)]="frcs._00308.comments" name="_00308"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00308.choice === 'questionable'"
             (click)="frcsModal('_00308', '20. (00308) Fire extinguisher/fire sprinkler')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00308.choice === 'questionable'" [(ngModel)]="frcs._00308.comments" name="_00308"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">21. (00311) Safety Shutdown Devices</ion-label>
         <ion-select [(ngModel)]="frcs._00311.choice" name="_00311" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00311.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00311.choice" [(ngModel)]="frcs._00311.val" name="_00311" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00311.choice === 'correct'" [(ngModel)]="frcs._00311.val" name="_00311" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00311.choice === 'questionable'" [(ngModel)]="frcs._00311.comments" name="_00311"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00311.choice === 'questionable'"
             (click)="frcsModal('_00311', '21. (00311) Safety Shutdown Devices')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00311.choice === 'questionable'" [(ngModel)]="frcs._00311.comments" name="_00311"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">22. (00312) Safe working area</ion-label>
         <ion-select [(ngModel)]="frcs._00312.choice" name="_00312" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00312.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00312.choice" [(ngModel)]="frcs._00312.val" name="_00312" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00312.choice === 'correct'" [(ngModel)]="frcs._00312.val" name="_00312" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00312.choice === 'questionable'" [(ngModel)]="frcs._00312.comments" name="_00312"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00312.choice === 'questionable'"
             (click)="frcsModal('_00312', '22. (00312) Safe working area')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00312.choice === 'questionable'" [(ngModel)]="frcs._00312.comments" name="_00312"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">23. (00319) Uneven/slick walking surface</ion-label>
         <ion-select [(ngModel)]="frcs._00319.choice" name="_00319" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00319.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00319.choice" [(ngModel)]="frcs._00319.val" name="_00319" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00319.choice === 'correct'" [(ngModel)]="frcs._00319.val" name="_00319" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00319.choice === 'questionable'" [(ngModel)]="frcs._00319.comments" name="_00319"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00319.choice === 'questionable'"
             (click)="frcsModal('_00319', '23. (00319) Uneven/slick walking surface')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00319.choice === 'questionable'" [(ngModel)]="frcs._00319.comments" name="_00319"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">24. (00320) Adequate lighting</ion-label>
         <ion-select [(ngModel)]="frcs._00320.choice" name="_00320" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00320.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00320.choice" [(ngModel)]="frcs._00320.val" name="_00320" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00320.choice === 'correct'" [(ngModel)]="frcs._00320.val" name="_00320" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00320.choice === 'questionable'" [(ngModel)]="frcs._00320.comments" name="_00320"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00320.choice === 'questionable'"
             (click)="frcsModal('_00320', '24. (00320) Adequate lighting')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00320.choice === 'questionable'" [(ngModel)]="frcs._00320.comments" name="_00320"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">25. (00322) Tipping hazard (e.g., book case, file cabinet)</ion-label>
         <ion-select [(ngModel)]="frcs._00322.choice" name="_00322" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00322.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00322.choice" [(ngModel)]="frcs._00322.val" name="_00322" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00322.choice === 'correct'" [(ngModel)]="frcs._00322.val" name="_00322" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00322.choice === 'questionable'" [(ngModel)]="frcs._00322.comments" name="_00322"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00322.choice === 'questionable'"
             (click)="frcsModal('_00322', '25. (00322) Tipping hazard (e.g., book case, file cabinet)')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00322.choice === 'questionable'" [(ngModel)]="frcs._00322.comments" name="_00322"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">26. (00323) Potential falling objects</ion-label>
         <ion-select [(ngModel)]="frcs._00322.choice" name="_00322" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00322.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00322.choice" [(ngModel)]="frcs._00322.val" name="_00322" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00322.choice === 'correct'" [(ngModel)]="frcs._00322.val" name="_00322" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00322.choice === 'questionable'" [(ngModel)]="frcs._00322.comments" name="_00322"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00322.choice === 'questionable'"
             (click)="frcsModal('_00322', '26. (00323) Potential falling objects')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00322.choice === 'questionable'" [(ngModel)]="frcs._00322.comments" name="_00322"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">27. (00327) Other; Specify:</ion-label>
         <ion-select [(ngModel)]="frcs._00327.choice" name="_00327" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00327.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00327.choice" [(ngModel)]="frcs._00327.val" name="_00327" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00327.choice === 'correct'" [(ngModel)]="frcs._00327.val" name="_00327" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00327.choice === 'questionable'" [(ngModel)]="frcs._00327.comments" name="_00327"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00327.choice === 'questionable'"
             (click)="frcsModal('_00327', '27. (00327) Other; Specify:')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00327.choice === 'questionable'" [(ngModel)]="frcs._00327.comments" name="_00327"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
@@ -980,253 +997,260 @@
       <ion-item>
         <ion-label position="stacked">28. (00401) LPSA/job planning/pre-job inspection</ion-label>
         <ion-select [(ngModel)]="frcs._00401.choice" name="_00401" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00401.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00401.choice" [(ngModel)]="frcs._00401.val" name="_00401" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00401.choice === 'correct'" [(ngModel)]="frcs._00401.val" name="_00401" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00401.choice === 'questionable'" [(ngModel)]="frcs._00401.comments" name="_00401"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00401.choice === 'questionable'"
             (click)="frcsModal('_00401', '28. (00401) LPSA/job planning/pre-job inspection')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00401.choice === 'questionable'" [(ngModel)]="frcs._00401.comments" name="_00401"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">29. (00408) Identification/labeling/tagging</ion-label>
         <ion-select [(ngModel)]="frcs._00408.choice" name="_00408" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00408.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00408.choice" [(ngModel)]="frcs._00408.val" name="_00408" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00408.choice === 'correct'" [(ngModel)]="frcs._00408.val" name="_00408" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00408.choice === 'questionable'" [(ngModel)]="frcs._00408.comments" name="_00408"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00408.choice === 'questionable'"
             (click)="frcsModal('_00408', '29. (00408) Identification/labeling/tagging')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00408.choice === 'questionable'" [(ngModel)]="frcs._00408.comments" name="_00408"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">30. (00409) Work permit/authorization to work</ion-label>
         <ion-select [(ngModel)]="frcs._00409.choice" name="_00409" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00409.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00409.choice" [(ngModel)]="frcs._00409.val" name="_00409" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00409.choice === 'correct'" [(ngModel)]="frcs._00409.val" name="_00409" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00409.choice === 'questionable'" [(ngModel)]="frcs._00409.comments" name="_00409"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00409.choice === 'questionable'"
             (click)="frcsModal('_00409', '30. (00409) Work permit/authorization to work')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00409.choice === 'questionable'" [(ngModel)]="frcs._00409.comments" name="_00409"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">31. (00414) JLA/procedures followed</ion-label>
         <ion-select [(ngModel)]="frcs._00414.choice" name="_00414" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00414.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00414.choice" [(ngModel)]="frcs._00414.val" name="_00414" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00414.choice === 'correct'" [(ngModel)]="frcs._00414.val" name="_00414" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00414.choice === 'questionable'" [(ngModel)]="frcs._00414.comments" name="_00414"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00414.choice === 'questionable'"
             (click)="frcsModal('_00414', '31. (00414) JLA/procedures followed')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00414.choice === 'questionable'" [(ngModel)]="frcs._00414.comments" name="_00414"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">32. (00420) Interfaces with other functions</ion-label>
         <ion-select [(ngModel)]="frcs._00420.choice" name="_00420" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00420.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00420.choice" [(ngModel)]="frcs._00420.val" name="_00420" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00420.choice === 'correct'" [(ngModel)]="frcs._00420.val" name="_00420" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00420.choice === 'questionable'" [(ngModel)]="frcs._00420.comments" name="_00420"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00420.choice === 'questionable'"
             (click)="frcsModal('_00420', '32. (00420) Interfaces with other functions')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00420.choice === 'questionable'" [(ngModel)]="frcs._00420.comments" name="_00420"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">33. (00421) Secure/clean area when complete</ion-label>
         <ion-select [(ngModel)]="frcs._00421.choice" name="_00421" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00421.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00421.choice" [(ngModel)]="frcs._00421.val" name="_00421" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00421.choice === 'correct'" [(ngModel)]="frcs._00421.val" name="_00421" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00421.choice === 'questionable'" [(ngModel)]="frcs._00421.comments" name="_00421"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00421.choice === 'questionable'"
             (click)="frcsModal('_00421', '33. (00421) Secure/clean area when complete')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00421.choice === 'questionable'" [(ngModel)]="frcs._00421.comments" name="_00421"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">34. (00426) Operate forklift/motorized vehicle</ion-label>
         <ion-select [(ngModel)]="frcs._00426.choice" name="_00426" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00426.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00426.choice" [(ngModel)]="frcs._00426.val" name="_00426" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00426.choice === 'correct'" [(ngModel)]="frcs._00426.val" name="_00426" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00426.choice === 'questionable'" [(ngModel)]="frcs._00426.comments" name="_00426"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00426.choice === 'questionable'"
             (click)="frcsModal('_00426', '34. (00426) Operate forklift/motorized vehicle')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00426.choice === 'questionable'" [(ngModel)]="frcs._00426.comments" name="_00426"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">35. (00453) Container not labeled or stored</ion-label>
         <ion-select [(ngModel)]="frcs._00453.choice" name="_00453" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00453.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00453.choice" [(ngModel)]="frcs._00453.val" name="_00453" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00453.choice === 'correct'" [(ngModel)]="frcs._00453.val" name="_00453" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00453.choice === 'questionable'" [(ngModel)]="frcs._00453.comments" name="_00453"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00453.choice === 'questionable'"
             (click)="frcsModal('_00453', '35. (00453) Container not labeled or stored')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00453.choice === 'questionable'" [(ngModel)]="frcs._00453.comments" name="_00453"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">36. (00454) Subsurface structures identified</ion-label>
         <ion-select [(ngModel)]="frcs._00454.choice" name="_00454" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00454.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00454.choice" [(ngModel)]="frcs._00454.val" name="_00454" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00454.choice === 'correct'" [(ngModel)]="frcs._00454.val" name="_00454" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._00454.choice === 'questionable'" [(ngModel)]="frcs._00454.comments" name="_00454"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00454.choice === 'questionable'"
             (click)="frcsModal('_00454', '36. (00454) Subsurface structures identified')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._00454.choice === 'questionable'" [(ngModel)]="frcs._00454.comments" name="_00454"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">37. (00816) Follows site traffic procedures</ion-label>
         <ion-select [(ngModel)]="frcs._00816.choice" name="_00816" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00816.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00816.choice" [(ngModel)]="frcs._00816.val" name="_00816" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00816.choice === 'correct'" [(ngModel)]="frcs._00816.val" name="_00816" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00816.choice === 'questionable'" [(ngModel)]="frcs._00816.comments" name="_00816"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00816.choice === 'questionable'"
             (click)="frcsModal('_00816', '37. (00816) Follows site traffic procedures')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00816.choice === 'questionable'" [(ngModel)]="frcs._00816.comments" name="_00816"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">38. (00456) Other; Specify:</ion-label>
         <ion-select [(ngModel)]="frcs._00456.choice" name="_00456" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._00456.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._00456.choice" [(ngModel)]="frcs._00456.val" name="_00456" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._00456.choice === 'correct'" [(ngModel)]="frcs._00456.val" name="_00456" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._00456.choice === 'questionable'" [(ngModel)]="frcs._00456.comments" name="_00456"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._00456.choice === 'questionable'"
             (click)="frcsModal('_00456', '38. (00456) Other; Specify:')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._00456.choice === 'questionable'" [(ngModel)]="frcs._00456.comments" name="_00456"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
     </ion-list>
@@ -1247,161 +1271,167 @@
       <ion-item>
         <ion-label position="stacked">39. (01501) Scaffolding</ion-label>
         <ion-select [(ngModel)]="frcs._01501.choice" name="_01501" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01501.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01501.choice" [(ngModel)]="frcs._01501.val" name="_01501" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01501.choice === 'correct'" [(ngModel)]="frcs._01501.val" name="_01501" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._01501.choice === 'questionable'" [(ngModel)]="frcs._01501.comments" name="_01501"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01501.choice === 'questionable'"
             (click)="frcsModal('_01501', '39. (01501) Scaffolding')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01501.choice === 'questionable'" [(ngModel)]="frcs._01501.comments" name="_01501"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">40. (01502) Portable ladders (e.g., electrical duty, size, anchoring)</ion-label>
         <ion-select [(ngModel)]="frcs._01502.choice" name="_01502" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01502.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01502.choice" [(ngModel)]="frcs._01502.val" name="_01502" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01502.choice === 'correct'" [(ngModel)]="frcs._01502.val" name="_01502" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01502.choice === 'questionable'" [(ngModel)]="frcs._01502.comments" name="_01502"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01502.choice === 'questionable'"
             (click)="frcsModal('_01502', '40. (01502) Portable ladders (e.g., electrical duty, size, anchoring)')">Fill
             up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._01502.choice === 'questionable'" [(ngModel)]="frcs._01502.comments" name="_01502"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">41. (01505) Hand tool selection, condition and use</ion-label>
         <ion-select [(ngModel)]="frcs._01505.choice" name="_01505" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01505.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01505.choice" [(ngModel)]="frcs._01505.val" name="_01505" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01505.choice === 'correct'" [(ngModel)]="frcs._01505.val" name="_01505" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01505.choice === 'questionable'" [(ngModel)]="frcs._01505.comments" name="_01505"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01505.choice === 'questionable'"
             (click)="frcsModal('_01505', '41. (01505) Hand tool selection, condition and use')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01505.choice === 'questionable'" [(ngModel)]="frcs._01505.comments" name="_01505"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
       <ion-item>
         <ion-label position="stacked">42. (01506) Power tool selection, condition and use</ion-label>
         <ion-select [(ngModel)]="frcs._01506.choice" name="_01506" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01506.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01506.choice" [(ngModel)]="frcs._01506.val" name="_01506" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01506.choice === 'correct'" [(ngModel)]="frcs._01506.val" name="_01506" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01506.choice === 'questionable'" [(ngModel)]="frcs._01506.comments" name="_01506"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01506.choice === 'questionable'"
             (click)="frcsModal('_01506', '42. (01506) Power tool selection, condition and use')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01506.choice === 'questionable'" [(ngModel)]="frcs._01506.comments" name="_01506"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">43. (01507) Equipment selection, condition and use</ion-label>
         <ion-select [(ngModel)]="frcs._01507.choice" name="_01507" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01507.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01507.choice" [(ngModel)]="frcs._01507.val" name="_01507" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01507.choice === 'correct'" [(ngModel)]="frcs._01507.val" name="_01507" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01507.choice === 'questionable'" [(ngModel)]="frcs._01507.comments" name="_01507"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01507.choice === 'questionable'"
             (click)="frcsModal('_01507', '43. (01507) Equipment selection, condition and use')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._01507.choice === 'questionable'" [(ngModel)]="frcs._01507.comments" name="_01507"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">44. (01556) Electrical cables/connections/grounding</ion-label>
         <ion-select [(ngModel)]="frcs._01556.choice" name="_01556" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01556.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01556.choice" [(ngModel)]="frcs._01556.val" name="_01556" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01556.choice === 'correct'" [(ngModel)]="frcs._01556.val" name="_01556" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._01556.choice === 'questionable'" [(ngModel)]="frcs._01556.comments" name="_01556"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01556.choice === 'questionable'"
             (click)="frcsModal('_01556', '44. (01556) Electrical cables/connections/grounding')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01556.choice === 'questionable'" [(ngModel)]="frcs._01556.comments" name="_01556"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">45. (01555) Other; Specify:</ion-label>
         <ion-select [(ngModel)]="frcs._01555.choice" name="_01555" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01555.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01555.choice" [(ngModel)]="frcs._01555.val" name="_01555" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01555.choice === 'correct'" [(ngModel)]="frcs._01555.val" name="_01555" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._01555.choice === 'questionable'" [(ngModel)]="frcs._01555.comments" name="_01555"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01555.choice === 'questionable'"
             (click)="frcsModal('_01555', '45. (01555) Other; Specify:')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01555.choice === 'questionable'" [(ngModel)]="frcs._01555.comments" name="_01555"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
@@ -1425,70 +1455,74 @@
       <ion-item>
         <ion-label position="stacked">46. (01701) Proper storage/disposal of sample or waste materials</ion-label>
         <ion-select [(ngModel)]="frcs._01701.choice" name="_01701" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01701.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01701.choice" [(ngModel)]="frcs._01701.val" name="_01701" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01701.choice === 'correct'" [(ngModel)]="frcs._01701.val" name="_01701" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01701.choice === 'questionable'" [(ngModel)]="frcs._01701.comments" name="_01701"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01701.choice === 'questionable'"
             (click)="frcsModal('_01701', '46. (01701) Proper storage/disposal of sample or waste materials')">Fill up
             FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._01701.choice === 'questionable'" [(ngModel)]="frcs._01701.comments" name="_01701"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">47. (01703) Precautions taken to avoid environmental damage</ion-label>
         <ion-select [(ngModel)]="frcs._01703.choice" name="_01703" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01703.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01703.choice" [(ngModel)]="frcs._01703.val" name="_01703" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01703.choice === 'correct'" [(ngModel)]="frcs._01703.val" name="_01703" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+          <ion-input *ngIf="frcs._01703.choice === 'questionable'" [(ngModel)]="frcs._01703.comments" name="_01703"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01703.choice === 'questionable'"
             (click)="frcsModal('_01703', '47. (01703) Precautions taken to avoid environmental damage')">Fill up FRCS
           </ion-button>
         </div>
-        <ion-input *ngIf="frcs._01703.choice === 'questionable'" [(ngModel)]="frcs._01703.comments" name="_01703"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
       <ion-item>
         <ion-label position="stacked">48. (01707) Other; Specify:</ion-label>
         <ion-select [(ngModel)]="frcs._01707.choice" name="_01707" (ionChange)="frcsChange($event)" mode="md"
-          interface="popover" placeholder="">
+          interface="popover" placeholder="Select choice">
           <ion-select-option value="correct">Correct</ion-select-option>
           <ion-select-option value="questionable">Questionable</ion-select-option>
         </ion-select>
       </ion-item>
       <div id="questionable" *ngIf="frcs._01707.choice">
         <div style="display: flex;">
-          <ion-input *ngIf="frcs._01707.choice" [(ngModel)]="frcs._01707.val" name="_01707" type="number"
-            placeholder="Enter Number of Times" required>
+          <ion-input *ngIf="frcs._01707.choice === 'correct'" [(ngModel)]="frcs._01707.val" name="_01707" type="number"
+            placeholder="Enter Number of Times">
+          </ion-input>
+
+          <ion-input *ngIf="frcs._01707.choice === 'questionable'" [(ngModel)]="frcs._01707.comments" name="_01707"
+            type="text" placeholder="Remarks">
           </ion-input>
           <ion-button size="small" *ngIf="frcs._01707.choice === 'questionable'"
             (click)="frcsModal('_01707', '48. (01707) Other; Specify:')">Fill up FRCS
           </ion-button>
+
         </div>
-        <ion-input *ngIf="frcs._01707.choice === 'questionable'" [(ngModel)]="frcs._01707.comments" name="_01707"
-          type="text" placeholder="Comments" required>
-        </ion-input>
       </div>
 
 
@@ -1507,97 +1541,89 @@
       <ion-list-header>Checklist #1</ion-list-header>
       <ion-item>
         <ion-label position="stacked">1. Checklist Line</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.chkline1" name="chkline1" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.chkline1" name="chkline1"></ion-input>
       </ion-item>
-
 
       <ion-item>
         <ion-label position="stacked">2. Factor</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.factor1" name="factor1" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.factor1" name="factor1"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="stacked">3. Solution</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.solution1" name="solution1" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.solution1" name="solution1"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">4. Person Responsible</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.personResp1" name="personResp1" required></ion-input>
+        <ion-input [disabled]="!soldev.chkline1" placeholder="e.g ?" [(ngModel)]="soldev.personResp1" name="personResp1"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">5. Target Completetion Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="Targdate1"></ion-datetime-button>
+        <ion-label position="stacked">5. Target Completetion Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline1" datetime="Targdate1"></ion-datetime-button>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">6. Actual Completetion Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="Actdate1"></ion-datetime-button>
+        <ion-label position="stacked">6. Actual Completetion Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline1" datetime="Actdate1"></ion-datetime-button>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">7. V&V Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="vvdate1"></ion-datetime-button>
+        <ion-label position="stacked">7. V&V Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline1" datetime="vvdate1"></ion-datetime-button>
       </ion-item>
 
       <!-- CHECKLIST 2 -->
       <ion-list-header>Checklist #2</ion-list-header>
       <ion-item>
         <ion-label position="stacked">1. Checklist Line</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.chkline2" name="chkline2" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.chkline2" name="chkline2"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="stacked">2. Factor</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.factor2" name="factor2" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.factor2" name="factor2"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="stacked">3. Solution</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.solution2" name="solution2" required></ion-input>
+        <ion-input readonly disabled placeholder="e.g ?" [(ngModel)]="soldev.solution2" name="solution2"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">4. Person Responsible</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.personResp2" name="personResp1" required></ion-input>
+        <ion-input [disabled]="!soldev.chkline2" placeholder="e.g ?" [(ngModel)]="soldev.personResp2" name="personResp2"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">5. Target Completetion Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="Targdate2"></ion-datetime-button>
+        <ion-label position="stacked">5. Target Completetion Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline2" datetime="Targdate2"></ion-datetime-button>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">6. Actual Completetion Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="Actdate2"></ion-datetime-button>
+        <ion-label position="stacked">6. Actual Completetion Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline2" datetime="Actdate2"></ion-datetime-button>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">7. V&V Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
-        <ion-datetime-button datetime="vvdate2"></ion-datetime-button>
+        <ion-label position="stacked">7. V&V Date</ion-label>
+        <ion-datetime-button [disabled]="!soldev.chkline2" datetime="vvdate2"></ion-datetime-button>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="stacked">8. Supervisor Quality Check:</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.supQuaChk" name="supQuaChk" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.supQuaChk" name="supQuaChk"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">9. Title/Company:</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.supTitle_comp" name="supTitle_comp" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.supTitle_comp" name="supTitle_comp"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">10. Date<span id="class-check"> (automatically set to current
-            date)</span></ion-label>
+        <ion-label position="stacked">10. Date<span id="class-check"> (set automatically)</span></ion-label>
         <ion-datetime-button datetime="supDate"></ion-datetime-button>
       </ion-item>
 
-
-      <ion-list-header>V&V Comments</ion-list-header>
+      
+      <ion-list-header>V&V Comments (Admin Only)</ion-list-header>
       <span id="brief-header">(Verification: Have solutions been implemented? Validation: Have solutions been
         effective?)
         (describe how the solution was verified and validated at the workplace/verification and validation of tool
@@ -1605,32 +1631,32 @@
 
 
       <ion-list-header>V&V #1</ion-list-header>
-      <ion-item>
+      <ion-item [disabled]="!admin">
         <ion-label position="stacked">1. V&V</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vv1" name="vv1" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vv1" name="vv1"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item [disabled]="!admin">
         <ion-label position="stacked">2. Job Title</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvjb1" name="vvjb1" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvjb1" name="vvjb1"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item [disabled]="!admin">
         <ion-label position="stacked">3. Comments</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvcomments1" name="vvcomments1" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvcomments1" name="vvcomments1"></ion-input>
       </ion-item>
 
 
       <ion-list-header>V&V #2</ion-list-header>
-      <ion-item>
+      <ion-item [disabled]="!admin"> 
         <ion-label position="stacked">1. V&V</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vv2" name="vv2" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vv2" name="vv2"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item [disabled]="!admin">
         <ion-label position="stacked">2. Job Title</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvjb2" name="vvjb2" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvjb2" name="vvjb2"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item [disabled]="!admin">
         <ion-label position="stacked">3. Comments</ion-label>
-        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvcomments2" name="vvcomments2" required></ion-input>
+        <ion-input placeholder="e.g ?" [(ngModel)]="soldev.vvcomments2" name="vvcomments2"></ion-input>
       </ion-item>
 
 
